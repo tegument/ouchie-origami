@@ -1,0 +1,926 @@
+{
+  "curriculum": "GB1",
+  "version": "4.0",
+  "classStructure": {
+    "warmUp": "7 minutes",
+    "selfDefenseAndTakedowns": "18 minutes",
+    "waterBreak": "2 minutes",
+    "sportJiuJitsu": "18 minutes",
+    "gb1DrillOrSpecificTraining": "10 minutes",
+    "coolDownAndClosing": "5 minutes"
+  },
+  "weeks": [
+    {
+      "week": 1,
+      "classA": {
+        "selfDefense": {
+          "category": "Strike",
+          "techniques": [
+            {
+              "number": 1,
+              "name": "Escape from Sidemount with Punches + Recovering the Guard + Technical Lift"
+            }
+          ]
+        },
+        "sportJiuJitsu": {
+          "position": "Guard Bottom",
+          "techniques": [
+            {
+              "number": 2,
+              "name": "Pulling to the Closed Guard Using the Foot on the Hip"
+            },
+            {
+              "number": 3,
+              "name": "Scissor Sweep"
+            }
+          ]
+        },
+        "gb1Drill": "Pulling to the Closed Guard + Scissor Sweep (Taking Turns)",
+        "specificTraining": "Guard",
+        "gb1TalkingPoint": "Jiu-Jitsu for Everyone"
+      },
+      "classB": {
+        "selfDefense": {
+          "category": "Strike",
+          "techniques": [
+            {
+              "number": 4,
+              "name": "Escape from Mount with Punches + Bridge + Posture from Closed Guard"
+            }
+          ]
+        },
+        "sportJiuJitsu": {
+          "position": "Guard Bottom",
+          "techniques": [
+            {
+              "number": 5,
+              "name": "X Collar Choke from Closed Guard with Four Fingers Inside the Collar"
+            },
+            {
+              "number": 6,
+              "name": "X Collar Choke from the Closed Guard with the Thumb Inside the Collar"
+            }
+          ]
+        },
+        "gb1Drill": "Pulling to the Closed Guard + X Collar Choke (Taking Turns)",
+        "specificTraining": "Guard",
+        "gb1TalkingPoint": "Jiu-Jitsu for Everyone"
+      }
+    },
+    {
+      "week": 2,
+      "classA": {
+        "selfDefense": {
+          "category": "Headlocks",
+          "techniques": [
+            {
+              "number": 7,
+              "name": "Escape from Side Standing Headlock + Rear Takedown + Technical Mount + Armbar"
+            }
+          ]
+        },
+        "sportJiuJitsu": {
+          "position": "Sidemount",
+          "techniques": [
+            {
+              "number": 8,
+              "name": "Escape from Sidemount Recovering the Closed Guard"
+            },
+            {
+              "number": 9,
+              "name": "Escape from Sidemount when the Opponent Blocks the Hip and the Head + Recovering the Closed Guard Using the Leg Over the Top"
+            }
+          ]
+        },
+        "gb1Drill": "Escape from Sidemount Recovering the Closed Guard + Over the Leg Guard Pass + Sidemount Control (Repeating)",
+        "specificTraining": "Side Mount",
+        "gb1TalkingPoint": "The Red Shield"
+      },
+      "classB": {
+        "selfDefense": {
+          "category": "Headlocks",
+          "techniques": [
+            {
+              "number": 10,
+              "name": "Escape from Rear Headlock with Forward Takedown & Escape from Rear Headlock with Outside Hook Takedown"
+            }
+          ]
+        },
+        "sportJiuJitsu": {
+          "position": "Sidemount",
+          "techniques": [
+            {
+              "number": 11,
+              "name": "Escape from Sidemount to Turtle Position"
+            },
+            {
+              "number": 12,
+              "name": "Double Leg Takedown from Turtle Position"
+            }
+          ]
+        },
+        "gb1Drill": "Escape from Sidemount to Turtle Position + Double Leg Takedown + Sidemount Control (Taking Turns)",
+        "specificTraining": "Side Mount",
+        "gb1TalkingPoint": "The Red Shield"
+      }
+    },
+    {
+      "week": 3,
+      "classA": {
+        "selfDefense": {
+          "category": "Strike",
+          "techniques": [
+            {
+              "number": 13,
+              "name": "Jab Slip to Double Leg Take Down"
+            }
+          ]
+        },
+        "sportJiuJitsu": {
+          "position": "Guard Top",
+          "techniques": [
+            {
+              "number": 14,
+              "name": "Safe Posture + Opening the Guard on the Knees + Elbows Closed"
+            },
+            {
+              "number": 15,
+              "name": "One Arm Under the Leg Guard Pass + Side Mount Control Blocking the Hips and Controlling the Shoulder"
+            }
+          ]
+        },
+        "gb1Drill": "Open the Guard + Pass the Guard + Side Mount Control + Mount + Bridge Mount Escape (Taking Turns)",
+        "specificTraining": "Guard",
+        "gb1TalkingPoint": "The GB Uniform"
+      },
+      "classB": {
+        "selfDefense": {
+          "category": "Strike",
+          "techniques": [
+            {
+              "number": 16,
+              "name": "Cross Punch Slip to Single Leg Take Down"
+            }
+          ]
+        },
+        "sportJiuJitsu": {
+          "position": "Guard Top",
+          "techniques": [
+            {
+              "number": 17,
+              "name": "Safe Posture + Opening the Guard Standing Up Holding the Sleeve"
+            },
+            {
+              "number": 18,
+              "name": "Knee Slide Guard Pass + Side Mount"
+            }
+          ]
+        },
+        "gb1Drill": "Open the Guard + Pass the Guard + Side Mount Control + Mount + Bridge Mount Escape (Taking Turns)",
+        "specificTraining": "Guard",
+        "gb1TalkingPoint": "The GB Uniform"
+      }
+    },
+    {
+      "week": 4,
+      "classA": {
+        "selfDefense": {
+          "category": "Clinch & Holds",
+          "techniques": [
+            {
+              "number": 19,
+              "name": "Double Lapel Grab Escape with Outside Hook Takedown + Straight Armbar"
+            }
+          ]
+        },
+        "sportJiuJitsu": {
+          "position": "Mount | Knee on Belly",
+          "techniques": [
+            {
+              "number": 20,
+              "name": "Escape from the Mount with Headlock Using the Bridge"
+            },
+            {
+              "number": 21,
+              "name": "Escape from the Mount with Choke Using the Bridge"
+            }
+          ]
+        },
+        "gb1Drill": "Bridge Mount Escape from Choke + Open the Guard on the Knees + Over the Leg Guard Pass + Sidemount + Mount (Taking Turns)",
+        "specificTraining": "Mount and Knee on Belly",
+        "gb1TalkingPoint": "The GB Brotherhood"
+      },
+      "classB": {
+        "selfDefense": {
+          "category": "Clinch & Holds",
+          "techniques": [
+            {
+              "number": 22,
+              "name": "Two Hand Throat Grab Escape + Block Knee Strike + Jab Slip + Body Lock Take Down + Transition to the Mount"
+            }
+          ]
+        },
+        "sportJiuJitsu": {
+          "position": "Mount | Knee on Belly",
+          "techniques": [
+            {
+              "number": 23,
+              "name": "Escape from the Mount Using the Elbows when the Opponent Does Not Open the Knee + Recovering the Full Guard"
+            },
+            {
+              "number": 24,
+              "name": "Knee on Belly Escape Pushing the Belt Knot + Half Technical Lift + Ankle Pick"
+            }
+          ]
+        },
+        "gb1Drill": "Mount Escape Using the Elbow + Recovering the Closed Guard + Open the Guard on the Knees + Over the Leg Guard Pass + Sidemount + Mount (Repeating)",
+        "specificTraining": "Mount and Knee on Belly",
+        "gb1TalkingPoint": "The GB Brotherhood"
+      }
+    },
+    {
+      "week": 5,
+      "classA": {
+        "selfDefense": {
+          "category": "Strike",
+          "techniques": [
+            {
+              "number": 25,
+              "name": "Blocking Punches from the Closed Guard + Distance Management + Control the Arms + Armbar"
+            }
+          ]
+        },
+        "sportJiuJitsu": {
+          "position": "Guard Bottom",
+          "techniques": [
+            {
+              "number": 26,
+              "name": "Pull Feet Sweep with Opponent Standing from Closed Guard"
+            },
+            {
+              "number": 27,
+              "name": "Waiter Sweep"
+            }
+          ]
+        },
+        "gb1Drill": "Pull Feet Sweep + Mount + Bridge Mount Escape (Sequential Drill)",
+        "specificTraining": "Guard",
+        "gb1TalkingPoint": "The GB Method"
+      },
+      "classB": {
+        "selfDefense": {
+          "category": "Strike",
+          "techniques": [
+            {
+              "number": 28,
+              "name": "Blocking Punches from the Closed Guard + Distance Management + Up Kick + Technical Lift"
+            }
+          ]
+        },
+        "sportJiuJitsu": {
+          "position": "Guard Bottom",
+          "techniques": [
+            {
+              "number": 29,
+              "name": "Tripod Sweep"
+            },
+            {
+              "number": 30,
+              "name": "Outside Hook Sweep when the Opponent Defends the Tripod Sweep"
+            }
+          ]
+        },
+        "gb1Drill": "Tripod Sweep + Half Technical Lift + Closed Guard (Taking Turns)",
+        "specificTraining": "Guard",
+        "gb1TalkingPoint": "The GB Method"
+      }
+    },
+    {
+      "week": 6,
+      "classA": {
+        "selfDefense": {
+          "category": "Headlocks",
+          "techniques": [
+            {
+              "number": 31,
+              "name": "Escape from Ground Headlock Pushing the Head Away + Armbar"
+            }
+          ]
+        },
+        "sportJiuJitsu": {
+          "position": "Back | Turtle",
+          "techniques": [
+            {
+              "number": 32,
+              "name": "Recovering the Guard from Rear Turtle Position"
+            },
+            {
+              "number": 33,
+              "name": "Recovering the Guard from Front Turtle Position"
+            }
+          ]
+        },
+        "gb1Drill": "Recovering the Guard from Rear Turtle Position + Submission (Taking Turns)",
+        "specificTraining": "Back and Turtle",
+        "gb1TalkingPoint": "The Jiu-Jitsu of Gracie Barra"
+      },
+      "classB": {
+        "selfDefense": {
+          "category": "Headlocks",
+          "techniques": [
+            {
+              "number": 34,
+              "name": "Headlock Escape Taking the Back + Shoulder Lock"
+            }
+          ]
+        },
+        "sportJiuJitsu": {
+          "position": "Back | Turtle",
+          "techniques": [
+            {
+              "number": 35,
+              "name": "Bridge Escape from The Back + Sidemount"
+            },
+            {
+              "number": 36,
+              "name": "Bridge Escape from the Back Using the Bridge Avoiding the Mount + Recovering the Guard"
+            }
+          ]
+        },
+        "gb1Drill": "Bridge Escape from the Back to Sidemount Top + Transition to the Mount (Taking Turns)",
+        "specificTraining": "Back and Turtle",
+        "gb1TalkingPoint": "The Jiu-Jitsu of Gracie Barra"
+      }
+    },
+    {
+      "week": 7,
+      "classA": {
+        "selfDefense": {
+          "category": "Strike",
+          "techniques": [
+            {
+              "number": 37,
+              "name": "Distance Management with the Arm + Front Push Kick + Body Lock Take Down + Sidemount Control"
+            }
+          ]
+        },
+        "sportJiuJitsu": {
+          "position": "Guard Top",
+          "techniques": [
+            {
+              "number": 38,
+              "name": "Open the Guard on the Knees + Over the Leg Guard Pass"
+            },
+            {
+              "number": 39,
+              "name": "Half Guard Pass Using the Hook + Hip Elevation + Transition to Mount"
+            }
+          ]
+        },
+        "gb1Drill": "Open the Guard on the Knees + Pass the Guard Over the Leg + Sidemount (Taking Turns)",
+        "specificTraining": "Guard",
+        "gb1TalkingPoint": "The GB Student"
+      },
+      "classB": {
+        "selfDefense": {
+          "category": "Strike",
+          "techniques": [
+            {
+              "number": 40,
+              "name": "Distance Management with the Arm + Jab + Cross + Double Leg"
+            }
+          ]
+        },
+        "sportJiuJitsu": {
+          "position": "Guard Top",
+          "techniques": [
+            {
+              "number": 41,
+              "name": "Spider Guard Bull-Fight Pass Turning the Wheel + Sidemount Control"
+            },
+            {
+              "number": 42,
+              "name": "Spider Bull-Fight Guard Pass with Hips Forward + Sidemount Control"
+            }
+          ]
+        },
+        "gb1Drill": "Spider Guard Pass + Sidemount (Taking Turns)",
+        "specificTraining": "Guard",
+        "gb1TalkingPoint": "The GB Student"
+      }
+    },
+    {
+      "week": 8,
+      "classA": {
+        "selfDefense": {
+          "category": "Clinch & Holds",
+          "techniques": [
+            {
+              "number": 43,
+              "name": "Blocking the Hook Punches + Headlock Takedown + Armbar"
+            }
+          ]
+        },
+        "sportJiuJitsu": {
+          "position": "Sidemount",
+          "techniques": [
+            {
+              "number": 44,
+              "name": "Transition to the Mount Switching the Base Passing the Leg Over"
+            },
+            {
+              "number": 45,
+              "name": "Papercut Choke with the Opponent's Arm Trapped"
+            }
+          ]
+        },
+        "gb1Drill": "Open the Guard on the Knees + Pass the Guard + Sidemount + Mount + Bridge Mount Escape from Choke (Taking Turns)",
+        "specificTraining": "Sidemount",
+        "gb1TalkingPoint": "The GB Black Belt"
+      },
+      "classB": {
+        "selfDefense": {
+          "category": "Clinch & Holds",
+          "techniques": [
+            {
+              "number": 46,
+              "name": "Jab Slip + Bodylock Clinch + Rear Bodylock + Wrist Control + Forward Takedown"
+            }
+          ]
+        },
+        "sportJiuJitsu": {
+          "position": "Sidemount",
+          "techniques": [
+            {
+              "number": 47,
+              "name": "Transition to the Mount Sliding the Knee Over the Belly"
+            },
+            {
+              "number": 48,
+              "name": "Spinning Armbar from Sidemount"
+            }
+          ]
+        },
+        "gb1Drill": "Open the Guard on the Knees + Pass the Guard + Sidemount + Mount + Bridge Mount Escape from Choke (Taking Turns)",
+        "specificTraining": "Sidemount",
+        "gb1TalkingPoint": "The GB Black Belt"
+      }
+    },
+    {
+      "week": 9,
+      "classA": {
+        "selfDefense": {
+          "category": "Strike",
+          "techniques": [
+            {
+              "number": 49,
+              "name": "Blocking Punches from the Turtle Position + Recovering the Guard"
+            }
+          ]
+        },
+        "sportJiuJitsu": {
+          "position": "Guard Bottom",
+          "techniques": [
+            {
+              "number": 50,
+              "name": "Pendulum Sweep"
+            },
+            {
+              "number": 51,
+              "name": "Straight Armbar from Closed Guard when Opponent Defends the Pendulum Sweep"
+            }
+          ]
+        },
+        "gb1Drill": "Pendulum Sweep + Mount + Knee Elbow Mount Escape (Taking Turns)",
+        "specificTraining": "Guard",
+        "gb1TalkingPoint": "The GB History"
+      },
+      "classB": {
+        "selfDefense": {
+          "category": "Strike",
+          "techniques": [
+            {
+              "number": 52,
+              "name": "Block Punches from Knee on Belly + Transition to Turtle + Recovering the Guard"
+            }
+          ]
+        },
+        "sportJiuJitsu": {
+          "position": "Guard Bottom",
+          "techniques": [
+            {
+              "number": 53,
+              "name": "Taking the Back from Closed Guard"
+            },
+            {
+              "number": 54,
+              "name": "Triangle from Closed Guard Controlling the Sleeve and the Wrist"
+            }
+          ]
+        },
+        "gb1Drill": "Recovering the Closed Guard From Sidemount + Submission (Taking Turns)",
+        "specificTraining": "Guard",
+        "gb1TalkingPoint": "The GB History"
+      }
+    },
+    {
+      "week": 10,
+      "classA": {
+        "selfDefense": {
+          "category": "Headlocks",
+          "techniques": [
+            {
+              "number": 55,
+              "name": "Standing Guillotine"
+            }
+          ]
+        },
+        "sportJiuJitsu": {
+          "position": "Mount | Knee on Belly",
+          "techniques": [
+            {
+              "number": 56,
+              "name": "X Choke from the Mount with the Four Fingers Inside the Collar & X Choke from the Mount with the Thumb Inside the Collar"
+            },
+            {
+              "number": 57,
+              "name": "Technical Mount + Two Collars Choke"
+            }
+          ]
+        },
+        "gb1Drill": "Transition from Technical Mount with Hand on the Collar when the Opponent Bridges + Two Collars Choke (Repeating)",
+        "specificTraining": "Mount | Knee on Belly",
+        "gb1TalkingPoint": "The GB Belt System"
+      },
+      "classB": {
+        "selfDefense": {
+          "category": "Headlocks",
+          "techniques": [
+            {
+              "number": 58,
+              "name": "Escape Side Headlock Standing with Punches"
+            }
+          ]
+        },
+        "sportJiuJitsu": {
+          "position": "Mount | Knee on Belly",
+          "techniques": [
+            {
+              "number": 59,
+              "name": "Straight Armbar from the Mount"
+            },
+            {
+              "number": 60,
+              "name": "Key Lock from the Mount"
+            }
+          ]
+        },
+        "gb1Drill": "Open the Guard + Pass the Guard + Transition to the Mount + Submission (Repeating)",
+        "specificTraining": "Mount | Knee on Belly",
+        "gb1TalkingPoint": "The GB Belt System"
+      }
+    },
+    {
+      "week": 11,
+      "classA": {
+        "selfDefense": {
+          "category": "Strike",
+          "techniques": [
+            {
+              "number": 61,
+              "name": "Block the Hook Punch + Hip Throw + Straight Armbar with Knee on Belly"
+            }
+          ]
+        },
+        "sportJiuJitsu": {
+          "position": "Guard Top",
+          "techniques": [
+            {
+              "number": 62,
+              "name": "Open the Guard on the Knees with Two Hands on the Belt"
+            },
+            {
+              "number": 63,
+              "name": "Knee Slide Guard Pass Controlling The Sleeve"
+            }
+          ]
+        },
+        "gb1Drill": "Open the Guard + Pass the Guard + Transition to Mount + Escape from Mount with Choke using the Bridge (Taking Turns)",
+        "specificTraining": "Guard",
+        "gb1TalkingPoint": "The GB Legacy"
+      },
+      "classB": {
+        "selfDefense": {
+          "category": "Strike",
+          "techniques": [
+            {
+              "number": 64,
+              "name": "Slip the Hook Punch + Bodylock Takedown + Transition to the Mount"
+            }
+          ]
+        },
+        "sportJiuJitsu": {
+          "position": "Guard Top",
+          "techniques": [
+            {
+              "number": 65,
+              "name": "Opening the Guard Standing Up Controlling the Collar and Hip"
+            },
+            {
+              "number": 66,
+              "name": "Guard Pass Standing Up with Both Arms Under The Legs"
+            }
+          ]
+        },
+        "gb1Drill": "Open the Guard + Pass the Guard + Transition to Mount + Escape from Mount with Choke using the Bridge (Taking Turns)",
+        "specificTraining": "Guard",
+        "gb1TalkingPoint": "The GB Legacy"
+      }
+    },
+    {
+      "week": 12,
+      "classA": {
+        "selfDefense": {
+          "category": "Clinch & Holds",
+          "techniques": [
+            {
+              "number": 67,
+              "name": "Escape from Front Bear Hug Over the Arms + Hip Throw + Knee on Belly"
+            }
+          ]
+        },
+        "sportJiuJitsu": {
+          "position": "Back | Turtle",
+          "techniques": [
+            {
+              "number": 68,
+              "name": "Taking the Back from Turtle Position + Seatbelt Grip Opening the Space for the Hook"
+            },
+            {
+              "number": 69,
+              "name": "Clock Choke"
+            }
+          ]
+        },
+        "gb1Drill": "Clock Choke + Defense from Clock Choke Flipping Over + Sidemount Control + Transition to the Mount (Taking Turns)",
+        "specificTraining": "Sidemount",
+        "gb1TalkingPoint": "The Equipe GB"
+      },
+      "classB": {
+        "selfDefense": {
+          "category": "Clinch & Holds",
+          "techniques": [
+            {
+              "number": 70,
+              "name": "Escape from Rear Bear Hug Over the Arms + Rear Takedown + Sidemount Control"
+            }
+          ]
+        },
+        "sportJiuJitsu": {
+          "position": "Back | Turtle",
+          "techniques": [
+            {
+              "number": 71,
+              "name": "Taking the Back from Turtle Position Using the Lapel Grip"
+            },
+            {
+              "number": 72,
+              "name": "Two Collars Choke & Rear Naked Choke"
+            }
+          ]
+        },
+        "gb1Drill": "Taking the Back from Turtle Position + Two Collars Choke + Rear Naked Choke (Taking Turns)",
+        "specificTraining": "Sidemount",
+        "gb1TalkingPoint": "The Equipe GB"
+      }
+    },
+    {
+      "week": 13,
+      "classA": {
+        "selfDefense": {
+          "category": "Strike",
+          "techniques": [
+            {
+              "number": 73,
+              "name": "Blocking Punches from Closed Guard Bottom + Clinch + Triangle Choke"
+            }
+          ]
+        },
+        "sportJiuJitsu": {
+          "position": "Guard Bottom",
+          "techniques": [
+            {
+              "number": 74,
+              "name": "Sit Up Sweep from Closed Guard"
+            },
+            {
+              "number": 75,
+              "name": "Kimura from Closed Guard"
+            }
+          ]
+        },
+        "gb1Drill": "Sit Up Sweep from Closed Guard + Knee-Elbow Escape (Taking Turns)",
+        "specificTraining": "Guard",
+        "gb1TalkingPoint": "The Mission of Gracie Barra"
+      },
+      "classB": {
+        "selfDefense": {
+          "category": "Strike",
+          "techniques": [
+            {
+              "number": 76,
+              "name": "Distance Management from Closed Guard Bottom + Knee Shield + Upkick + Technical Lift"
+            }
+          ]
+        },
+        "sportJiuJitsu": {
+          "position": "Guard Bottom",
+          "techniques": [
+            {
+              "number": 77,
+              "name": "Spider Guard Control with Opponent Bullfighting or Posturing"
+            },
+            {
+              "number": 78,
+              "name": "Spider Guard Sweep with the Opponent on his Knees"
+            }
+          ]
+        },
+        "gb1Drill": "Spider Guard Control with Opponent Bull Fighting + Opponent Posturing + Closed Guard (Repeating)",
+        "specificTraining": "Guard",
+        "gb1TalkingPoint": "The Mission of Gracie Barra"
+      }
+    },
+    {
+      "week": 14,
+      "classA": {
+        "selfDefense": {
+          "category": "Headlocks",
+          "techniques": [
+            {
+              "number": 79,
+              "name": "Escape from Ground Headlock to Turtle Position + Inversion + Technical Mount + Straight Armbar"
+            }
+          ]
+        },
+        "sportJiuJitsu": {
+          "position": "Sidemount",
+          "techniques": [
+            {
+              "number": 80,
+              "name": "Escape Sidemount Control + Recovering Half Guard"
+            },
+            {
+              "number": 81,
+              "name": "Half Guard Sweep Using the Underhook and Controlling the Opponent's Foot"
+            }
+          ]
+        },
+        "gb1Drill": "Escape from Head and Arm Sidemount Control to Half Guard + Half Guard Sweep Using the Underhook and Controlling the Opponent's Foot (Taking Turns)",
+        "specificTraining": "Sidemount",
+        "gb1TalkingPoint": "Master Carlos Gracie Jr."
+      },
+      "classB": {
+        "selfDefense": {
+          "category": "Headlocks",
+          "techniques": [
+            {
+              "number": 82,
+              "name": "Headlock Escape Taking the Back + Shoulder Lock"
+            }
+          ]
+        },
+        "sportJiuJitsu": {
+          "position": "Sidemount",
+          "techniques": [
+            {
+              "number": 83,
+              "name": "Escape From Sidemount Anticipating the Guard Pass + Elbow Control + Recovering The Guard"
+            },
+            {
+              "number": 84,
+              "name": "Escape from Sidemount Anticipating the Guard Pass + Inversion with the Hand on the Belt"
+            }
+          ]
+        },
+        "gb1Drill": "Open the Guard on the Knees + Under the Leg Guard Pass + Escape Sidemount Anticipating the Guard Pass + Elbow Control + Recover the Guard (Repeating)",
+        "specificTraining": "Sidemount",
+        "gb1TalkingPoint": "Master Carlos Gracie Jr."
+      }
+    },
+    {
+      "week": 15,
+      "classA": {
+        "selfDefense": {
+          "category": "Strike",
+          "techniques": [
+            {
+              "number": 85,
+              "name": "Block Front Kick + Elbow Strike"
+            }
+          ]
+        },
+        "sportJiuJitsu": {
+          "position": "Guard Top",
+          "techniques": [
+            {
+              "number": 86,
+              "name": "Open the Guard Standing Up with Two Hands on the Pants"
+            },
+            {
+              "number": 87,
+              "name": "Leg Drag Guard Pass"
+            }
+          ]
+        },
+        "gb1Drill": "Open the Guard + Pass the Guard + Sidemount Control (Repeating)",
+        "specificTraining": "Guard",
+        "gb1TalkingPoint": "The GB Training Etiquette"
+      },
+      "classB": {
+        "selfDefense": {
+          "category": "Strike",
+          "techniques": [
+            {
+              "number": 88,
+              "name": "Blocking High Round Kick + Inside Hook Takedown + Straight Footlock"
+            }
+          ]
+        },
+        "sportJiuJitsu": {
+          "position": "Guard Top",
+          "techniques": [
+            {
+              "number": 89,
+              "name": "Open the Guard on the Knees with both Hands on the Pants"
+            },
+            {
+              "number": 90,
+              "name": "Two Arms Under The Leg Guard Pass on the Knees"
+            }
+          ]
+        },
+        "gb1Drill": "Open the Guard + Pass the Guard + Sidemount Control (Repeating)",
+        "specificTraining": "Guard",
+        "gb1TalkingPoint": "The GB Training Etiquette"
+      }
+    },
+    {
+      "week": 16,
+      "classA": {
+        "selfDefense": {
+          "category": "Clinch & Holds",
+          "techniques": [
+            {
+              "number": 91,
+              "name": "Escape from Front Bear Hug Under the Arm + Break Opponent's Grips + Outside Hook Takedown + Straight Armbar"
+            }
+          ]
+        },
+        "sportJiuJitsu": {
+          "position": "Mount | Knee on Belly",
+          "techniques": [
+            {
+              "number": 92,
+              "name": "Escape from Mount Using the Bridge"
+            },
+            {
+              "number": 93,
+              "name": "Escape from Mount Using the Elbows When Opponent Opens the Knee + Recovering the Closed Guard"
+            }
+          ]
+        },
+        "gb1Drill": "Open the Guard on the Knees + Over the Leg Guard Pass + Sidemount + Mount + Escape from Mount Using the Elbows when Opponent Opens the Knee + Recovering the Closed Guard (Repeating)",
+        "specificTraining": "Mount | Knee on Belly",
+        "gb1TalkingPoint": "The GB Attendance Card"
+      },
+      "classB": {
+        "selfDefense": {
+          "category": "Clinch & Holds",
+          "techniques": [
+            {
+              "number": 94,
+              "name": "Rear Bear Hug Escape Over the Arm + Hook on the Leg + Hand on the Floor + Leg Lock"
+            }
+          ]
+        },
+        "sportJiuJitsu": {
+          "position": "Mount | Knee on Belly",
+          "techniques": [
+            {
+              "number": 95,
+              "name": "Escape from the Mount Using the Elbows when the Opponent Initiates the Transition to the Mount + Take the Back"
+            },
+            {
+              "number": 96,
+              "name": "Knee on Belly Escape Turning the Back + Open Guard"
+            }
+          ]
+        },
+        "gb1Drill": "Bullfight Guard Pass + Knee on the Belly + Knee on Belly Escape Turning the Back to Open Guard (Repeating)",
+        "specificTraining": "Mount | Knee on Belly",
+        "gb1TalkingPoint": "The GB Attendance Card"
+      }
+    }
+  ]
+}
