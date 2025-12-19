@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Habit Tracker - BJJ Journal</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.4in;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 9pt;
+            line-height: 1.2;
+            color: #333;
+            width: 7.5in;
+            margin: 0 auto;
+            padding: 0.25in;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+                width: 100%;
+            }
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 2px solid #333;
+            padding-bottom: 6px;
+            margin-bottom: 10px;
+        }
+
+        .header h1 {
+            font-size: 14pt;
+            font-weight: bold;
+        }
+
+        .header-meta {
+            display: flex;
+            gap: 12px;
+            font-size: 9pt;
+        }
+
+        .header-meta .field {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .header-meta .field label {
+            font-weight: bold;
+        }
+
+        .header-meta .field .line {
+            border-bottom: 1px solid #333;
+            min-width: 70px;
+            height: 12px;
+        }
+
+        .instructions {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 8px;
+            margin-bottom: 10px;
+            font-size: 8pt;
+        }
+
+        .instructions strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .habit-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 8pt;
+        }
+
+        .habit-table th,
+        .habit-table td {
+            border: 1px solid #999;
+            text-align: center;
+            padding: 0;
+        }
+
+        .habit-table th {
+            background: #333;
+            color: white;
+            font-weight: bold;
+            padding: 4px 2px;
+        }
+
+        .habit-table .day-col {
+            width: 28px;
+            font-weight: bold;
+        }
+
+        .habit-table .habit-header {
+            height: 60px;
+            vertical-align: bottom;
+            padding: 4px 2px;
+            background: #eee;
+        }
+
+        .habit-table .habit-header .rotate {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: rotate(180deg);
+            white-space: nowrap;
+            font-size: 8pt;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .habit-table .day-row td {
+            height: 20px;
+        }
+
+        .habit-table .day-num {
+            font-weight: bold;
+            background: #f5f5f5;
+        }
+
+        .habit-table .check-cell {
+            background: white;
+        }
+
+        .habit-table .weekend {
+            background: #f0f0f0;
+        }
+
+        .habit-table .totals-row td {
+            background: #eee;
+            font-weight: bold;
+            height: 22px;
+        }
+
+        .habit-table .percent-row td {
+            background: #ddd;
+            font-weight: bold;
+            height: 22px;
+        }
+
+        .summary-section {
+            margin-top: 12px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .summary-box {
+            border: 1px solid #999;
+            padding: 8px;
+        }
+
+        .summary-box h3 {
+            font-size: 9pt;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 4px;
+            margin-bottom: 6px;
+        }
+
+        .summary-box .line {
+            border-bottom: 1px solid #ccc;
+            height: 16px;
+            margin-bottom: 4px;
+        }
+
+        .legend {
+            display: flex;
+            gap: 15px;
+            margin-top: 8px;
+            font-size: 8pt;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .legend-box {
+            width: 14px;
+            height: 14px;
+            border: 1px solid #999;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10pt;
+        }
+
+        .footer {
+            margin-top: 10px;
+            padding-top: 6px;
+            border-top: 1px solid #ccc;
+            font-size: 7pt;
+            color: #666;
+            text-align: center;
+        }
+
+        .suggested-habits {
+            margin-top: 8px;
+            font-size: 7pt;
+            color: #666;
+        }
+
+        .suggested-habits strong {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Monthly Habit Tracker</h1>
+    <div class="header-meta">
+        <div class="field">
+            <label>Month:</label>
+            <div class="line"></div>
+        </div>
+        <div class="field">
+            <label>Year:</label>
+            <div class="line" style="min-width: 50px;"></div>
+        </div>
+    </div>
+</div>
+
+<div class="instructions">
+    <strong>How to Use:</strong>
+    Write your habits in the header row (vertical). Mark each day with: <strong>X</strong> = completed, <strong>O</strong> = partial, <strong>-</strong> = skipped intentionally, leave blank = missed. Calculate totals and percentages at month end.
+</div>
+
+<table class="habit-table">
+    <thead>
+        <tr>
+            <th class="day-col">Day</th>
+            <th class="habit-header"><div class="rotate"></div></th>
+            <th class="habit-header"><div class="rotate"></div></th>
+            <th class="habit-header"><div class="rotate"></div></th>
+            <th class="habit-header"><div class="rotate"></div></th>
+            <th class="habit-header"><div class="rotate"></div></th>
+            <th class="habit-header"><div class="rotate"></div></th>
+            <th class="habit-header"><div class="rotate"></div></th>
+            <th class="habit-header"><div class="rotate"></div></th>
+            <th class="habit-header"><div class="rotate"></div></th>
+            <th class="habit-header"><div class="rotate"></div></th>
+            <th class="habit-header"><div class="rotate"></div></th>
+            <th class="habit-header"><div class="rotate"></div></th>
+            <th class="habit-header"><div class="rotate"></div></th>
+            <th class="habit-header"><div class="rotate"></div></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="day-row"><td class="day-num">1</td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td></tr>
+        <tr class="day-row"><td class="day-num">2</td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td></tr>
+        <tr class="day-row"><td class="day-num">3</td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td></tr>
+        <tr class="day-row"><td class="day-num">4</td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td></tr>
+        <tr class="day-row"><td class="day-num">5</td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td></tr>
+        <tr class="day-row"><td class="day-num">6</td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td></tr>
+        <tr class="day-row"><td class="day-num">7</td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td></tr>
+        <tr class="day-row"><td class="day-num">8</td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td></tr>
+        <tr class="day-row"><td class="day-num">9</td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td></tr>
+        <tr class="day-row"><td class="day-num">10</td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td></tr>
+        <tr class="day-row"><td class="day-num">11</td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td></tr>
+        <tr class="day-row"><td class="day-num">12</td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td></tr>
+        <tr class="day-row"><td class="day-num">13</td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td></tr>
+        <tr class="day-row"><td class="day-num">14</td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td></tr>
+        <tr class="day-row"><td class="day-num">15</td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td></tr>
+        <tr class="day-row"><td class="day-num">16</td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td></tr>
+        <tr class="day-row"><td class="day-num">17</td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td></tr>
+        <tr class="day-row"><td class="day-num">18</td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td></tr>
+        <tr class="day-row"><td class="day-num">19</td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td></tr>
+        <tr class="day-row"><td class="day-num">20</td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td></tr>
+        <tr class="day-row"><td class="day-num">21</td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td></tr>
+        <tr class="day-row"><td class="day-num">22</td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td></tr>
+        <tr class="day-row"><td class="day-num">23</td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td></tr>
+        <tr class="day-row"><td class="day-num">24</td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td></tr>
+        <tr class="day-row"><td class="day-num">25</td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td></tr>
+        <tr class="day-row"><td class="day-num">26</td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td></tr>
+        <tr class="day-row"><td class="day-num">27</td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td></tr>
+        <tr class="day-row"><td class="day-num">28</td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td></tr>
+        <tr class="day-row"><td class="day-num">29</td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td></tr>
+        <tr class="day-row"><td class="day-num">30</td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td></tr>
+        <tr class="day-row"><td class="day-num">31</td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td><td class="check-cell"></td></tr>
+        <tr class="totals-row">
+            <td>Total</td>
+            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="percent-row">
+            <td>%</td>
+            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="legend">
+    <div class="legend-item"><div class="legend-box">X</div> Completed</div>
+    <div class="legend-item"><div class="legend-box">O</div> Partial</div>
+    <div class="legend-item"><div class="legend-box">-</div> Skipped (intentional)</div>
+    <div class="legend-item"><div class="legend-box"></div> Missed</div>
+</div>
+
+<div class="suggested-habits">
+    <strong>Suggested BJJ Habits:</strong> BJJ Training, Stretching/Mobility, Strength Training, Cardio, Technique Study (Video), Visualization, Sleep 7+ hrs, Hydration, Clean Eating, Journal Entry, Rest Day (planned), Recovery (ice/heat/massage)
+</div>
+
+<div class="summary-section">
+    <div class="summary-box">
+        <h3>Best Habit Streak</h3>
+        <div>Habit: <span class="line" style="display: inline-block; width: 60%;"></span></div>
+        <div>Streak: <span class="line" style="display: inline-block; width: 30%;"></span> days</div>
+    </div>
+    <div class="summary-box">
+        <h3>Monthly Reflection</h3>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+</div>
+
+<div class="footer">
+    BJJ Training Journal - Monthly Habit Tracker | The Ouchie Method | ouchieorigami.com
+</div>
+
+</body>
+</html>

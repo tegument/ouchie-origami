@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sparring Log - BJJ Journal</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.4in;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 9pt;
+            line-height: 1.2;
+            color: #333;
+            width: 7.5in;
+            margin: 0 auto;
+            padding: 0.2in;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+                width: 100%;
+            }
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 2px solid #333;
+            padding-bottom: 6px;
+            margin-bottom: 10px;
+        }
+
+        .header h1 {
+            font-size: 14pt;
+            font-weight: bold;
+        }
+
+        .header-meta {
+            font-size: 8pt;
+            display: flex;
+            gap: 15px;
+        }
+
+        .header-meta .line {
+            border-bottom: 1px solid #333;
+            min-width: 60px;
+            display: inline-block;
+        }
+
+        .instructions {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 6px;
+            margin-bottom: 10px;
+            font-size: 8pt;
+        }
+
+        .legend {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 8px;
+            font-size: 8pt;
+            padding: 4px 8px;
+            background: #f5f5f5;
+        }
+
+        .session-block {
+            border: 1px solid #999;
+            margin-bottom: 10px;
+            padding: 8px;
+        }
+
+        .session-header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 4px;
+            margin-bottom: 6px;
+            font-size: 9pt;
+        }
+
+        .session-header .date-field {
+            font-weight: bold;
+        }
+
+        .session-header .line {
+            border-bottom: 1px solid #666;
+            min-width: 80px;
+            display: inline-block;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 8pt;
+            margin-bottom: 6px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 3px 4px;
+            text-align: center;
+        }
+
+        th {
+            background: #eee;
+            font-weight: bold;
+            font-size: 7pt;
+            text-transform: uppercase;
+        }
+
+        .round-col {
+            width: 30px;
+        }
+
+        .partner-col {
+            width: 18%;
+            text-align: left;
+        }
+
+        .tally-col {
+            width: 50px;
+        }
+
+        .notes-col {
+            width: 25%;
+            text-align: left;
+        }
+
+        .row-data td {
+            height: 20px;
+        }
+
+        .totals-section {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 6px;
+            margin-top: 6px;
+        }
+
+        .total-box {
+            border: 1px solid #999;
+            padding: 4px;
+            text-align: center;
+        }
+
+        .total-box .label {
+            font-size: 7pt;
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        .total-box .values {
+            display: flex;
+            justify-content: space-around;
+            font-size: 9pt;
+            margin-top: 2px;
+        }
+
+        .total-box .values span {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .total-box .values .num {
+            font-weight: bold;
+            font-size: 11pt;
+            min-height: 14px;
+        }
+
+        .total-box .values .sub-label {
+            font-size: 6pt;
+            color: #888;
+        }
+
+        .footer {
+            margin-top: 8px;
+            padding-top: 6px;
+            border-top: 1px solid #ccc;
+            font-size: 7pt;
+            color: #666;
+            text-align: center;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .notes-area {
+            border: 1px solid #ccc;
+            min-height: 25px;
+            padding: 3px;
+            font-size: 8pt;
+        }
+
+        .field-label {
+            font-size: 7pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #555;
+            margin-bottom: 2px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Sparring Log</h1>
+    <div class="header-meta">
+        <span>Week: <span class="line"></span></span>
+        <span>Month: <span class="line"></span></span>
+    </div>
+</div>
+
+<div class="instructions">
+    <strong>How to Use:</strong> Log each sparring session. Use tally marks (||||) for attempts (A) and successes (S). D = Defended against opponent. Calculate session totals, then transfer to weekly summary.
+</div>
+
+<div class="legend">
+    <strong>Position Key:</strong>
+    G = Guard | M = Mount | SC = Side Control | B = Back | T = Turtle | S = Standing
+    <span style="margin-left: 20px;"><strong>Outcome:</strong> W = Win/Tap | L = Loss/Tapped | D = Draw/Time</span>
+</div>
+
+<!-- Session 1 -->
+<div class="session-block">
+    <div class="session-header">
+        <span class="date-field">Date: <span class="line"></span></span>
+        <span>Duration: <span class="line" style="min-width: 40px;"></span> min</span>
+        <span>Rounds: <span class="line" style="min-width: 30px;"></span></span>
+        <span>Class Type: <span class="line"></span></span>
+    </div>
+    <table>
+        <tr>
+            <th class="round-col">Rd</th>
+            <th class="partner-col">Partner</th>
+            <th class="tally-col">Start</th>
+            <th class="tally-col">End</th>
+            <th class="tally-col">Sub A</th>
+            <th class="tally-col">Sub S</th>
+            <th class="tally-col">Swp A</th>
+            <th class="tally-col">Swp S</th>
+            <th class="tally-col">Pass A</th>
+            <th class="tally-col">Pass S</th>
+            <th class="tally-col">Esc</th>
+            <th class="notes-col">Notes</th>
+        </tr>
+        <tr class="row-data"><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr class="row-data"><td>2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr class="row-data"><td>3</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr class="row-data"><td>4</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr class="row-data"><td>5</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr class="row-data"><td>6</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    </table>
+    <div class="totals-section">
+        <div class="total-box">
+            <div class="label">Submissions</div>
+            <div class="values">
+                <span><span class="num"></span><span class="sub-label">Att</span></span>
+                <span><span class="num"></span><span class="sub-label">Land</span></span>
+                <span><span class="num"></span><span class="sub-label">Def</span></span>
+            </div>
+        </div>
+        <div class="total-box">
+            <div class="label">Sweeps</div>
+            <div class="values">
+                <span><span class="num"></span><span class="sub-label">Att</span></span>
+                <span><span class="num"></span><span class="sub-label">Land</span></span>
+                <span><span class="num"></span><span class="sub-label">Def</span></span>
+            </div>
+        </div>
+        <div class="total-box">
+            <div class="label">Passes</div>
+            <div class="values">
+                <span><span class="num"></span><span class="sub-label">Att</span></span>
+                <span><span class="num"></span><span class="sub-label">Land</span></span>
+                <span><span class="num"></span><span class="sub-label">Def</span></span>
+            </div>
+        </div>
+        <div class="total-box">
+            <div class="label">Takedowns</div>
+            <div class="values">
+                <span><span class="num"></span><span class="sub-label">Att</span></span>
+                <span><span class="num"></span><span class="sub-label">Land</span></span>
+                <span><span class="num"></span><span class="sub-label">Def</span></span>
+            </div>
+        </div>
+        <div class="total-box">
+            <div class="label">Escapes</div>
+            <div class="values">
+                <span><span class="num"></span><span class="sub-label">Att</span></span>
+                <span><span class="num"></span><span class="sub-label">Made</span></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Session 2 -->
+<div class="session-block">
+    <div class="session-header">
+        <span class="date-field">Date: <span class="line"></span></span>
+        <span>Duration: <span class="line" style="min-width: 40px;"></span> min</span>
+        <span>Rounds: <span class="line" style="min-width: 30px;"></span></span>
+        <span>Class Type: <span class="line"></span></span>
+    </div>
+    <table>
+        <tr>
+            <th class="round-col">Rd</th>
+            <th class="partner-col">Partner</th>
+            <th class="tally-col">Start</th>
+            <th class="tally-col">End</th>
+            <th class="tally-col">Sub A</th>
+            <th class="tally-col">Sub S</th>
+            <th class="tally-col">Swp A</th>
+            <th class="tally-col">Swp S</th>
+            <th class="tally-col">Pass A</th>
+            <th class="tally-col">Pass S</th>
+            <th class="tally-col">Esc</th>
+            <th class="notes-col">Notes</th>
+        </tr>
+        <tr class="row-data"><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr class="row-data"><td>2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr class="row-data"><td>3</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr class="row-data"><td>4</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr class="row-data"><td>5</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr class="row-data"><td>6</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    </table>
+    <div class="totals-section">
+        <div class="total-box">
+            <div class="label">Submissions</div>
+            <div class="values">
+                <span><span class="num"></span><span class="sub-label">Att</span></span>
+                <span><span class="num"></span><span class="sub-label">Land</span></span>
+                <span><span class="num"></span><span class="sub-label">Def</span></span>
+            </div>
+        </div>
+        <div class="total-box">
+            <div class="label">Sweeps</div>
+            <div class="values">
+                <span><span class="num"></span><span class="sub-label">Att</span></span>
+                <span><span class="num"></span><span class="sub-label">Land</span></span>
+                <span><span class="num"></span><span class="sub-label">Def</span></span>
+            </div>
+        </div>
+        <div class="total-box">
+            <div class="label">Passes</div>
+            <div class="values">
+                <span><span class="num"></span><span class="sub-label">Att</span></span>
+                <span><span class="num"></span><span class="sub-label">Land</span></span>
+                <span><span class="num"></span><span class="sub-label">Def</span></span>
+            </div>
+        </div>
+        <div class="total-box">
+            <div class="label">Takedowns</div>
+            <div class="values">
+                <span><span class="num"></span><span class="sub-label">Att</span></span>
+                <span><span class="num"></span><span class="sub-label">Land</span></span>
+                <span><span class="num"></span><span class="sub-label">Def</span></span>
+            </div>
+        </div>
+        <div class="total-box">
+            <div class="label">Escapes</div>
+            <div class="values">
+                <span><span class="num"></span><span class="sub-label">Att</span></span>
+                <span><span class="num"></span><span class="sub-label">Made</span></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Session Insights -->
+<div class="two-column" style="margin-top: 8px;">
+    <div>
+        <div class="field-label">Best Moments This Week</div>
+        <div class="notes-area"></div>
+    </div>
+    <div>
+        <div class="field-label">Areas to Improve</div>
+        <div class="notes-area"></div>
+    </div>
+</div>
+
+<div class="footer">
+    BJJ Training Journal - Sparring Log | The Ouchie Method | ouchieorigami.com
+</div>
+
+</body>
+</html>

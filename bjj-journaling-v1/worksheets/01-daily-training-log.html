@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Training Session Log - BJJ Journal</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 10pt;
+            line-height: 1.3;
+            color: #333;
+            width: 7.5in;
+            margin: 0 auto;
+            padding: 0.25in;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+                width: 100%;
+            }
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 2px solid #333;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+        }
+
+        .header h1 {
+            font-size: 16pt;
+            font-weight: bold;
+        }
+
+        .header-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 9pt;
+        }
+
+        .header-meta .field {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .header-meta .field label {
+            font-weight: bold;
+        }
+
+        .header-meta .field .line {
+            border-bottom: 1px solid #333;
+            min-width: 80px;
+            height: 14px;
+        }
+
+        .section {
+            margin-bottom: 12px;
+        }
+
+        .section-header {
+            background: #333;
+            color: white;
+            padding: 4px 8px;
+            font-size: 10pt;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        .row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 6px;
+        }
+
+        .col {
+            flex: 1;
+        }
+
+        .col-2 {
+            flex: 2;
+        }
+
+        .col-3 {
+            flex: 3;
+        }
+
+        .field-group {
+            margin-bottom: 6px;
+        }
+
+        .field-group label {
+            font-size: 8pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #555;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .input-line {
+            border-bottom: 1px solid #999;
+            min-height: 18px;
+            width: 100%;
+        }
+
+        .input-box {
+            border: 1px solid #999;
+            min-height: 18px;
+            width: 100%;
+            padding: 2px 4px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 9pt;
+        }
+
+        .checkbox {
+            width: 12px;
+            height: 12px;
+            border: 1px solid #333;
+            display: inline-block;
+        }
+
+        .rating-scale {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+
+        .rating-box {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #333;
+            text-align: center;
+            font-size: 8pt;
+            line-height: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 9pt;
+        }
+
+        th, td {
+            border: 1px solid #999;
+            padding: 4px 6px;
+            text-align: left;
+        }
+
+        th {
+            background: #eee;
+            font-weight: bold;
+            font-size: 8pt;
+            text-transform: uppercase;
+        }
+
+        .narrow {
+            width: 40px;
+            text-align: center;
+        }
+
+        .medium {
+            width: 60px;
+            text-align: center;
+        }
+
+        .notes-area {
+            border: 1px solid #999;
+            min-height: 60px;
+            width: 100%;
+            padding: 4px;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .sparring-round {
+            border: 1px solid #ccc;
+            padding: 6px;
+            margin-bottom: 6px;
+        }
+
+        .sparring-round-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+            font-weight: bold;
+            font-size: 9pt;
+        }
+
+        .mini-table {
+            font-size: 8pt;
+        }
+
+        .mini-table th, .mini-table td {
+            padding: 2px 4px;
+        }
+
+        .tally-box {
+            width: 50px;
+            height: 18px;
+            border: 1px solid #999;
+            display: inline-block;
+        }
+
+        .footer {
+            margin-top: 10px;
+            padding-top: 8px;
+            border-top: 1px solid #ccc;
+            font-size: 8pt;
+            color: #666;
+            text-align: center;
+        }
+
+        .state-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 3px;
+        }
+
+        .state-item {
+            text-align: center;
+            font-size: 8pt;
+        }
+
+        .state-item .number {
+            width: 22px;
+            height: 22px;
+            border: 1px solid #333;
+            margin: 0 auto;
+            line-height: 22px;
+            font-weight: bold;
+        }
+
+        .state-item .label {
+            font-size: 7pt;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Daily Training Session Log</h1>
+    <div class="header-meta">
+        <div class="field">
+            <label>Date:</label>
+            <div class="line"></div>
+        </div>
+        <div class="field">
+            <label>Day:</label>
+            <div class="line" style="min-width: 50px;"></div>
+        </div>
+        <div class="field">
+            <label>Week #:</label>
+            <div class="line" style="min-width: 30px;"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Session Info -->
+<div class="section">
+    <div class="section-header">Session Info</div>
+    <div class="row">
+        <div class="col">
+            <div class="field-group">
+                <label>Class Type</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item"><span class="checkbox"></span> Fundamentals</div>
+                    <div class="checkbox-item"><span class="checkbox"></span> All Levels</div>
+                    <div class="checkbox-item"><span class="checkbox"></span> Advanced</div>
+                    <div class="checkbox-item"><span class="checkbox"></span> Open Mat</div>
+                    <div class="checkbox-item"><span class="checkbox"></span> Private</div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="field-group">
+                <label>Time</label>
+                <div class="input-line"></div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="field-group">
+                <label>Duration (min)</label>
+                <div class="input-line"></div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="field-group">
+                <label>Instructor</label>
+                <div class="input-line"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Techniques Drilled -->
+<div class="section">
+    <div class="section-header">Techniques Drilled</div>
+    <table>
+        <tr>
+            <th>Position</th>
+            <th>Technique Name</th>
+            <th class="medium">Reps</th>
+            <th class="medium">Quality (1-5)</th>
+            <th>Key Details / Notes</th>
+        </tr>
+        <tr>
+            <td style="height: 22px;"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="height: 22px;"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="height: 22px;"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="height: 22px;"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="height: 22px;"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+
+<!-- Sparring Rounds -->
+<div class="section">
+    <div class="section-header">Sparring Rounds</div>
+    <table>
+        <tr>
+            <th class="narrow">Rd</th>
+            <th>Partner</th>
+            <th class="medium">Duration</th>
+            <th class="narrow">Start Pos</th>
+            <th class="narrow">End Pos</th>
+            <th>Submissions (Attempt/Land)</th>
+            <th>Sweeps (A/L)</th>
+            <th>Passes (A/L)</th>
+            <th>Notes</th>
+        </tr>
+        <tr>
+            <td style="height: 20px;">1</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="height: 20px;">2</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="height: 20px;">3</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="height: 20px;">4</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="height: 20px;">5</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="height: 20px;">6</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <div style="margin-top: 6px; font-size: 8pt; color: #666;">
+        <strong>Position Key:</strong> G = Guard (Top/Bottom), M = Mount (Top/Bottom), SC = Side Control (Top/Bottom), B = Back (Have/Give), T = Turtle, S = Standing
+    </div>
+</div>
+
+<!-- Sparring Totals -->
+<div class="section">
+    <div class="section-header">Session Sparring Totals</div>
+    <div class="row">
+        <div class="col">
+            <table class="mini-table">
+                <tr>
+                    <th></th>
+                    <th>Attempted</th>
+                    <th>Landed</th>
+                    <th>Defended</th>
+                </tr>
+                <tr>
+                    <td><strong>Submissions</strong></td>
+                    <td style="height: 18px;"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>Sweeps</strong></td>
+                    <td style="height: 18px;"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>Passes</strong></td>
+                    <td style="height: 18px;"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>Takedowns</strong></td>
+                    <td style="height: 18px;"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>Escapes</strong></td>
+                    <td style="height: 18px;"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <div class="col">
+            <div class="field-group">
+                <label>Position Time Estimate (% of rolling)</label>
+            </div>
+            <table class="mini-table">
+                <tr>
+                    <td>Guard (Playing)</td>
+                    <td style="width: 40px;"></td>
+                    <td>%</td>
+                    <td>Mount (Top)</td>
+                    <td style="width: 40px;"></td>
+                    <td>%</td>
+                </tr>
+                <tr>
+                    <td>Guard (Passing)</td>
+                    <td></td>
+                    <td>%</td>
+                    <td>Mount (Bottom)</td>
+                    <td></td>
+                    <td>%</td>
+                </tr>
+                <tr>
+                    <td>Side Ctrl (Top)</td>
+                    <td></td>
+                    <td>%</td>
+                    <td>Back (Have)</td>
+                    <td></td>
+                    <td>%</td>
+                </tr>
+                <tr>
+                    <td>Side Ctrl (Bottom)</td>
+                    <td></td>
+                    <td>%</td>
+                    <td>Back (Give)</td>
+                    <td></td>
+                    <td>%</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Physical & Mental State -->
+<div class="section">
+    <div class="section-header">Physical & Mental State</div>
+    <div class="two-column">
+        <div>
+            <div class="field-group">
+                <label>Physical State (circle one)</label>
+                <div class="state-grid">
+                    <div class="state-item"><div class="number">1</div><div class="label">Exhausted</div></div>
+                    <div class="state-item"><div class="number">2</div><div class="label">Tired</div></div>
+                    <div class="state-item"><div class="number">3</div><div class="label">Normal</div></div>
+                    <div class="state-item"><div class="number">4</div><div class="label">Good</div></div>
+                    <div class="state-item"><div class="number">5</div><div class="label">Peak</div></div>
+                </div>
+            </div>
+            <div class="field-group" style="margin-top: 8px;">
+                <label>Energy Level Before Class (1-5)</label>
+                <div class="input-line" style="width: 50px; display: inline-block;"></div>
+                <label style="display: inline; margin-left: 15px;">After Class (1-5)</label>
+                <div class="input-line" style="width: 50px; display: inline-block;"></div>
+            </div>
+            <div class="field-group" style="margin-top: 8px;">
+                <label>Soreness / Injury Notes</label>
+                <div class="input-line"></div>
+            </div>
+        </div>
+        <div>
+            <div class="field-group">
+                <label>Mental State (circle one)</label>
+                <div class="state-grid">
+                    <div class="state-item"><div class="number">1</div><div class="label">Frustrated</div></div>
+                    <div class="state-item"><div class="number">2</div><div class="label">Distracted</div></div>
+                    <div class="state-item"><div class="number">3</div><div class="label">Neutral</div></div>
+                    <div class="state-item"><div class="number">4</div><div class="label">Focused</div></div>
+                    <div class="state-item"><div class="number">5</div><div class="label">Flow State</div></div>
+                </div>
+            </div>
+            <div class="field-group" style="margin-top: 8px;">
+                <label>Focus Level During Class (1-5)</label>
+                <div class="input-line" style="width: 50px; display: inline-block;"></div>
+            </div>
+            <div class="field-group" style="margin-top: 8px;">
+                <label>Mindset Notes</label>
+                <div class="input-line"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Session Insights -->
+<div class="section">
+    <div class="section-header">Session Insights</div>
+    <div class="two-column">
+        <div>
+            <div class="field-group">
+                <label>What worked well today?</label>
+                <div class="notes-area" style="min-height: 40px;"></div>
+            </div>
+        </div>
+        <div>
+            <div class="field-group">
+                <label>What needs work?</label>
+                <div class="notes-area" style="min-height: 40px;"></div>
+            </div>
+        </div>
+    </div>
+    <div class="field-group" style="margin-top: 8px;">
+        <label>Key Insight / Breakthrough / Question for Instructor</label>
+        <div class="notes-area" style="min-height: 35px;"></div>
+    </div>
+</div>
+
+<!-- Goals -->
+<div class="section">
+    <div class="section-header">Goals Check</div>
+    <div class="row">
+        <div class="col-2">
+            <div class="field-group">
+                <label>Today's Focus Goal (before class)</label>
+                <div class="input-line"></div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="field-group">
+                <label>Achieved?</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item"><span class="checkbox"></span> Yes</div>
+                    <div class="checkbox-item"><span class="checkbox"></span> Partial</div>
+                    <div class="checkbox-item"><span class="checkbox"></span> No</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="field-group">
+        <label>Focus for Next Session</label>
+        <div class="input-line"></div>
+    </div>
+</div>
+
+<div class="footer">
+    BJJ Training Journal - Daily Session Log | The Ouchie Method | ouchieorigami.com
+</div>
+
+</body>
+</html>

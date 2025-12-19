@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Review - BJJ Journal</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 10pt;
+            line-height: 1.3;
+            color: #333;
+            width: 7.5in;
+            margin: 0 auto;
+            padding: 0.25in;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+                width: 100%;
+            }
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 2px solid #333;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+        }
+
+        .header h1 {
+            font-size: 16pt;
+            font-weight: bold;
+        }
+
+        .header-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 9pt;
+        }
+
+        .header-meta .field {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .header-meta .field label {
+            font-weight: bold;
+        }
+
+        .header-meta .field .line {
+            border-bottom: 1px solid #333;
+            min-width: 80px;
+            height: 14px;
+        }
+
+        .section {
+            margin-bottom: 12px;
+        }
+
+        .section-header {
+            background: #333;
+            color: white;
+            padding: 4px 8px;
+            font-size: 10pt;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        .row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 6px;
+        }
+
+        .col {
+            flex: 1;
+        }
+
+        .field-group {
+            margin-bottom: 6px;
+        }
+
+        .field-group label {
+            font-size: 8pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #555;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .input-line {
+            border-bottom: 1px solid #999;
+            min-height: 18px;
+            width: 100%;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 9pt;
+        }
+
+        th, td {
+            border: 1px solid #999;
+            padding: 4px 6px;
+            text-align: left;
+        }
+
+        th {
+            background: #eee;
+            font-weight: bold;
+            font-size: 8pt;
+            text-transform: uppercase;
+        }
+
+        .narrow {
+            width: 50px;
+            text-align: center;
+        }
+
+        .medium {
+            width: 70px;
+            text-align: center;
+        }
+
+        .notes-area {
+            border: 1px solid #999;
+            min-height: 50px;
+            width: 100%;
+            padding: 4px;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .three-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+        }
+
+        .four-column {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        .five-column {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 6px;
+        }
+
+        .stat-box {
+            border: 1px solid #999;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .stat-box .number {
+            font-size: 16pt;
+            font-weight: bold;
+            line-height: 1;
+            min-height: 20px;
+        }
+
+        .stat-box .label {
+            font-size: 7pt;
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        .stat-box-small {
+            border: 1px solid #ccc;
+            padding: 4px;
+            text-align: center;
+        }
+
+        .stat-box-small .number {
+            font-size: 12pt;
+            font-weight: bold;
+            min-height: 16px;
+        }
+
+        .stat-box-small .label {
+            font-size: 7pt;
+            color: #666;
+        }
+
+        .progress-bar {
+            display: flex;
+            gap: 2px;
+            margin-top: 4px;
+        }
+
+        .progress-segment {
+            flex: 1;
+            height: 10px;
+            border: 1px solid #999;
+        }
+
+        .week-summary {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+        }
+
+        .week-box {
+            border: 1px solid #ccc;
+            padding: 6px;
+            text-align: center;
+            font-size: 8pt;
+        }
+
+        .week-box .week-label {
+            font-weight: bold;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 2px;
+            margin-bottom: 4px;
+        }
+
+        .footer {
+            margin-top: 10px;
+            padding-top: 8px;
+            border-top: 1px solid #ccc;
+            font-size: 8pt;
+            color: #666;
+            text-align: center;
+        }
+
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 5px;
+            align-items: center;
+            padding: 3px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 9pt;
+        }
+
+        .comparison-row.header-row {
+            font-weight: bold;
+            font-size: 8pt;
+            text-transform: uppercase;
+            background: #f5f5f5;
+            padding: 4px 0;
+        }
+
+        .trend-indicator {
+            font-size: 10pt;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Monthly Review</h1>
+    <div class="header-meta">
+        <div class="field">
+            <label>Month:</label>
+            <div class="line" style="min-width: 80px;"></div>
+        </div>
+        <div class="field">
+            <label>Year:</label>
+            <div class="line" style="min-width: 50px;"></div>
+        </div>
+        <div class="field">
+            <label>Training Month #:</label>
+            <div class="line" style="min-width: 30px;"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Training Volume Summary -->
+<div class="section">
+    <div class="section-header">Training Volume Summary</div>
+    <div class="five-column">
+        <div class="stat-box">
+            <div class="number"></div>
+            <div class="label">Total Sessions</div>
+        </div>
+        <div class="stat-box">
+            <div class="number"></div>
+            <div class="label">Total Hours</div>
+        </div>
+        <div class="stat-box">
+            <div class="number"></div>
+            <div class="label">Sparring Rounds</div>
+        </div>
+        <div class="stat-box">
+            <div class="number"></div>
+            <div class="label">Sessions Planned</div>
+        </div>
+        <div class="stat-box">
+            <div class="number"></div>
+            <div class="label">Attendance %</div>
+        </div>
+    </div>
+    <div style="margin-top: 10px;">
+        <div class="field-group">
+            <label>Weekly Breakdown</label>
+        </div>
+        <div class="week-summary">
+            <div class="week-box">
+                <div class="week-label">Week 1</div>
+                <div>Sessions: ___</div>
+                <div>Hours: ___</div>
+                <div>Rounds: ___</div>
+            </div>
+            <div class="week-box">
+                <div class="week-label">Week 2</div>
+                <div>Sessions: ___</div>
+                <div>Hours: ___</div>
+                <div>Rounds: ___</div>
+            </div>
+            <div class="week-box">
+                <div class="week-label">Week 3</div>
+                <div>Sessions: ___</div>
+                <div>Hours: ___</div>
+                <div>Rounds: ___</div>
+            </div>
+            <div class="week-box">
+                <div class="week-label">Week 4</div>
+                <div>Sessions: ___</div>
+                <div>Hours: ___</div>
+                <div>Rounds: ___</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Monthly Sparring Statistics -->
+<div class="section">
+    <div class="section-header">Monthly Sparring Statistics</div>
+    <div class="two-column">
+        <div>
+            <table>
+                <tr>
+                    <th></th>
+                    <th class="narrow">Att</th>
+                    <th class="narrow">Landed</th>
+                    <th class="narrow">Def</th>
+                    <th class="narrow">Success %</th>
+                </tr>
+                <tr>
+                    <td><strong>Submissions</strong></td>
+                    <td style="height: 18px;"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>Sweeps</strong></td>
+                    <td style="height: 18px;"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>Passes</strong></td>
+                    <td style="height: 18px;"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>Takedowns</strong></td>
+                    <td style="height: 18px;"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>Escapes</strong></td>
+                    <td style="height: 18px;"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <div class="field-group">
+                <label>Top Submissions Landed</label>
+                <div style="font-size: 9pt;">
+                    1. <span class="input-line" style="width: 60%; display: inline-block;"></span> × ___<br>
+                    2. <span class="input-line" style="width: 60%; display: inline-block;"></span> × ___<br>
+                    3. <span class="input-line" style="width: 60%; display: inline-block;"></span> × ___
+                </div>
+            </div>
+            <div class="field-group">
+                <label>Most Caught By</label>
+                <div style="font-size: 9pt;">
+                    1. <span class="input-line" style="width: 60%; display: inline-block;"></span> × ___<br>
+                    2. <span class="input-line" style="width: 60%; display: inline-block;"></span> × ___
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Position Analysis -->
+<div class="section">
+    <div class="section-header">Position Analysis</div>
+    <div class="two-column">
+        <div>
+            <div class="field-group">
+                <label>Time Spent by Position (estimate %)</label>
+            </div>
+            <table style="font-size: 8pt;">
+                <tr>
+                    <th>Position</th>
+                    <th class="narrow">%</th>
+                    <th>Comfort (1-5)</th>
+                    <th>Trend</th>
+                </tr>
+                <tr>
+                    <td>Guard (Playing)</td>
+                    <td style="height: 16px;"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Guard (Passing)</td>
+                    <td style="height: 16px;"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Side Control (Top)</td>
+                    <td style="height: 16px;"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Side Control (Bottom)</td>
+                    <td style="height: 16px;"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Mount (Top)</td>
+                    <td style="height: 16px;"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Mount (Bottom)</td>
+                    <td style="height: 16px;"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Back (Attacking)</td>
+                    <td style="height: 16px;"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Back (Defending)</td>
+                    <td style="height: 16px;"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+            <div style="font-size: 7pt; color: #666; margin-top: 4px;">Trend: ↑ improving, → same, ↓ declining</div>
+        </div>
+        <div>
+            <div class="field-group">
+                <label>Strongest Position This Month</label>
+                <div class="input-line"></div>
+            </div>
+            <div class="field-group">
+                <label>Weakest Position This Month</label>
+                <div class="input-line"></div>
+            </div>
+            <div class="field-group">
+                <label>Most Improved Position</label>
+                <div class="input-line"></div>
+            </div>
+            <div class="field-group">
+                <label>Position Needing Focus Next Month</label>
+                <div class="input-line"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Technique Progress -->
+<div class="section">
+    <div class="section-header">Technique Progress</div>
+    <div class="two-column">
+        <div>
+            <div class="field-group">
+                <label>New Techniques Learned</label>
+                <div class="notes-area" style="min-height: 40px;"></div>
+            </div>
+            <div class="field-group">
+                <label>Techniques That Leveled Up</label>
+                <div class="notes-area" style="min-height: 40px;"></div>
+            </div>
+        </div>
+        <div>
+            <div class="field-group">
+                <label>Techniques Needing More Work</label>
+                <div class="notes-area" style="min-height: 40px;"></div>
+            </div>
+            <div class="field-group">
+                <label>Go-To Techniques (Most Reliable)</label>
+                <div class="notes-area" style="min-height: 40px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Goals Review -->
+<div class="section">
+    <div class="section-header">Monthly Goals Review</div>
+    <div class="two-column">
+        <div>
+            <div class="field-group">
+                <label>This Month's Goals</label>
+                <div class="notes-area" style="min-height: 50px;"></div>
+            </div>
+        </div>
+        <div>
+            <div class="field-group">
+                <label>Achievement Level</label>
+                <div class="progress-bar">
+                    <div class="progress-segment"></div>
+                    <div class="progress-segment"></div>
+                    <div class="progress-segment"></div>
+                    <div class="progress-segment"></div>
+                    <div class="progress-segment"></div>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 7pt; color: #666;">
+                    <span>0%</span>
+                    <span>25%</span>
+                    <span>50%</span>
+                    <span>75%</span>
+                    <span>100%</span>
+                </div>
+            </div>
+            <div class="field-group" style="margin-top: 8px;">
+                <label>What helped/hindered goal achievement?</label>
+                <div class="notes-area" style="min-height: 35px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Physical & Mental State -->
+<div class="section">
+    <div class="section-header">Physical & Mental State</div>
+    <div class="two-column">
+        <div>
+            <div class="four-column">
+                <div class="stat-box-small">
+                    <div class="number"></div>
+                    <div class="label">Avg Energy</div>
+                </div>
+                <div class="stat-box-small">
+                    <div class="number"></div>
+                    <div class="label">Avg Recovery</div>
+                </div>
+                <div class="stat-box-small">
+                    <div class="number"></div>
+                    <div class="label">Avg Sleep</div>
+                </div>
+                <div class="stat-box-small">
+                    <div class="number"></div>
+                    <div class="label">Avg Focus</div>
+                </div>
+            </div>
+            <div class="field-group" style="margin-top: 8px;">
+                <label>Injuries This Month</label>
+                <div class="input-line"></div>
+            </div>
+            <div class="field-group">
+                <label>Recovery Actions Taken</label>
+                <div class="input-line"></div>
+            </div>
+        </div>
+        <div>
+            <div class="field-group">
+                <label>Mental Highlights (breakthroughs, motivation)</label>
+                <div class="notes-area" style="min-height: 35px;"></div>
+            </div>
+            <div class="field-group">
+                <label>Mental Challenges (frustration, plateaus)</label>
+                <div class="notes-area" style="min-height: 35px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Month Comparison -->
+<div class="section">
+    <div class="section-header">Month-Over-Month Comparison</div>
+    <div class="comparison-row header-row">
+        <div>Metric</div>
+        <div>Last Month</div>
+        <div>This Month</div>
+        <div>Change</div>
+    </div>
+    <div class="comparison-row">
+        <div>Total Sessions</div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="comparison-row">
+        <div>Sparring Rounds</div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="comparison-row">
+        <div>Submission Success %</div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="comparison-row">
+        <div>Sweep Success %</div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="comparison-row">
+        <div>Pass Success %</div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+<!-- Next Month Planning -->
+<div class="section">
+    <div class="section-header">Next Month Planning</div>
+    <div class="two-column">
+        <div>
+            <div class="field-group">
+                <label>Primary Goal</label>
+                <div class="notes-area" style="min-height: 30px;"></div>
+            </div>
+            <div class="field-group">
+                <label>Position Focus</label>
+                <div class="input-line"></div>
+            </div>
+            <div class="field-group">
+                <label>Technique to Develop</label>
+                <div class="input-line"></div>
+            </div>
+        </div>
+        <div>
+            <div class="field-group">
+                <label>Training Frequency Goal</label>
+                <div class="input-line"></div>
+            </div>
+            <div class="field-group">
+                <label>Physical Goal (strength, cardio, flexibility)</label>
+                <div class="input-line"></div>
+            </div>
+            <div class="field-group">
+                <label>Questions to Ask / Concepts to Explore</label>
+                <div class="notes-area" style="min-height: 30px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    BJJ Training Journal - Monthly Review | The Ouchie Method | ouchieorigami.com
+</div>
+
+</body>
+</html>

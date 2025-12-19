@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Technique Checklist - GB1 Curriculum - BJJ Journal</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.4in;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 9pt;
+            line-height: 1.2;
+            color: #333;
+            width: 7.5in;
+            margin: 0 auto;
+            padding: 0.2in;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+                width: 100%;
+            }
+            .page-break {
+                page-break-before: always;
+            }
+            .section {
+                page-break-inside: avoid;
+            }
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 2px solid #333;
+            padding-bottom: 6px;
+            margin-bottom: 8px;
+        }
+
+        .header h1 {
+            font-size: 14pt;
+            font-weight: bold;
+        }
+
+        .header-subtitle {
+            font-size: 10pt;
+            color: #666;
+        }
+
+        .header-meta {
+            font-size: 8pt;
+            text-align: right;
+        }
+
+        .instructions {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 6px;
+            margin-bottom: 10px;
+            font-size: 8pt;
+        }
+
+        .section {
+            margin-bottom: 10px;
+        }
+
+        .section-header {
+            background: #333;
+            color: white;
+            padding: 3px 8px;
+            font-size: 9pt;
+            font-weight: bold;
+            margin-bottom: 4px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .section-count {
+            font-weight: normal;
+            font-size: 8pt;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .three-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 8pt;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 2px 4px;
+            text-align: left;
+        }
+
+        th {
+            background: #eee;
+            font-weight: bold;
+            font-size: 7pt;
+            text-transform: uppercase;
+        }
+
+        .check-col {
+            width: 16px;
+            text-align: center;
+        }
+
+        .week-col {
+            width: 28px;
+            text-align: center;
+            font-size: 7pt;
+            color: #666;
+        }
+
+        .technique-row td {
+            height: 15px;
+        }
+
+        .technique-name {
+            font-size: 7.5pt;
+        }
+
+        .subsection {
+            margin-bottom: 8px;
+        }
+
+        .subsection-header {
+            font-weight: bold;
+            font-size: 8pt;
+            background: #e8e8e8;
+            padding: 2px 6px;
+            margin-bottom: 3px;
+        }
+
+        .summary-box {
+            border: 1px solid #999;
+            padding: 8px;
+            margin-top: 10px;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 6px;
+        }
+
+        .summary-item {
+            text-align: center;
+            padding: 4px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+
+        .summary-item .number {
+            font-size: 12pt;
+            font-weight: bold;
+            min-height: 16px;
+        }
+
+        .summary-item .label {
+            font-size: 7pt;
+            color: #666;
+        }
+
+        .footer {
+            margin-top: 8px;
+            padding-top: 6px;
+            border-top: 1px solid #ccc;
+            font-size: 7pt;
+            color: #666;
+            text-align: center;
+        }
+
+        .position-tag {
+            font-size: 6pt;
+            color: #888;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div>
+        <h1>Master Technique Checklist</h1>
+        <div class="header-subtitle">GB1 Fundamentals Curriculum - Sport Jiu-Jitsu Techniques</div>
+    </div>
+    <div class="header-meta">
+        Name: _________________ <br>
+        Started: _________ Belt: _________
+    </div>
+</div>
+
+<div class="instructions">
+    <strong>How to Use:</strong> Check off techniques as you progress through the GB1 curriculum. L = Learned (seen/drilled), P = Practiced (multiple reps), C = Competent (can execute), M = Mastered (hit in live rolling). Week column shows when technique appears in curriculum.
+</div>
+
+<!-- Submissions Section -->
+<div class="section">
+    <div class="section-header">
+        <span>Submissions</span>
+        <span class="section-count">16 techniques</span>
+    </div>
+    <div class="two-column">
+        <div>
+            <div class="subsection">
+                <div class="subsection-header">Chokes</div>
+                <table>
+                    <tr>
+                        <th class="week-col">Wk</th>
+                        <th>Technique</th>
+                        <th class="check-col">L</th>
+                        <th class="check-col">P</th>
+                        <th class="check-col">C</th>
+                        <th class="check-col">M</th>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">1</td>
+                        <td class="technique-name">X Collar Choke (4 fingers inside) <span class="position-tag">Guard</span></td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">1</td>
+                        <td class="technique-name">X Collar Choke (thumb inside) <span class="position-tag">Guard</span></td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">8</td>
+                        <td class="technique-name">Papercut Choke <span class="position-tag">Sidemount</span></td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">9</td>
+                        <td class="technique-name">Triangle from Closed Guard <span class="position-tag">Guard</span></td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">10</td>
+                        <td class="technique-name">X Choke (4 fingers inside) <span class="position-tag">Mount</span></td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">10</td>
+                        <td class="technique-name">X Choke (thumb inside) <span class="position-tag">Mount</span></td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">10</td>
+                        <td class="technique-name">Two Collars Choke <span class="position-tag">Tech Mount</span></td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">12</td>
+                        <td class="technique-name">Clock Choke <span class="position-tag">Turtle</span></td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">12</td>
+                        <td class="technique-name">Two Collars Choke <span class="position-tag">Back</span></td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">12</td>
+                        <td class="technique-name">Rear Naked Choke <span class="position-tag">Back</span></td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div>
+            <div class="subsection">
+                <div class="subsection-header">Joint Locks</div>
+                <table>
+                    <tr>
+                        <th class="week-col">Wk</th>
+                        <th>Technique</th>
+                        <th class="check-col">L</th>
+                        <th class="check-col">P</th>
+                        <th class="check-col">C</th>
+                        <th class="check-col">M</th>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">8</td>
+                        <td class="technique-name">Spinning Armbar <span class="position-tag">Sidemount</span></td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">9</td>
+                        <td class="technique-name">Straight Armbar (Pendulum defense) <span class="position-tag">Guard</span></td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">10</td>
+                        <td class="technique-name">Straight Armbar <span class="position-tag">Mount</span></td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">10</td>
+                        <td class="technique-name">Key Lock (Americana) <span class="position-tag">Mount</span></td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">13</td>
+                        <td class="technique-name">Kimura <span class="position-tag">Guard</span></td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">9</td>
+                        <td class="technique-name">Taking the Back <span class="position-tag">Guard</span></td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sweeps Section -->
+<div class="section">
+    <div class="section-header">
+        <span>Sweeps</span>
+        <span class="section-count">9 techniques</span>
+    </div>
+    <div class="two-column">
+        <div>
+            <div class="subsection">
+                <div class="subsection-header">From Closed Guard</div>
+                <table>
+                    <tr>
+                        <th class="week-col">Wk</th>
+                        <th>Technique</th>
+                        <th class="check-col">L</th>
+                        <th class="check-col">P</th>
+                        <th class="check-col">C</th>
+                        <th class="check-col">M</th>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">1</td>
+                        <td class="technique-name">Scissor Sweep</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">5</td>
+                        <td class="technique-name">Pull Feet Sweep (opponent standing)</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">9</td>
+                        <td class="technique-name">Pendulum Sweep</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">13</td>
+                        <td class="technique-name">Sit Up Sweep</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div>
+            <div class="subsection">
+                <div class="subsection-header">From Open / Half / Spider Guard</div>
+                <table>
+                    <tr>
+                        <th class="week-col">Wk</th>
+                        <th>Technique</th>
+                        <th class="check-col">L</th>
+                        <th class="check-col">P</th>
+                        <th class="check-col">C</th>
+                        <th class="check-col">M</th>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">5</td>
+                        <td class="technique-name">Waiter Sweep</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">5</td>
+                        <td class="technique-name">Tripod Sweep</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">5</td>
+                        <td class="technique-name">Outside Hook Sweep (Tripod defense)</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">13</td>
+                        <td class="technique-name">Spider Guard Sweep (opp. on knees)</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">14</td>
+                        <td class="technique-name">Half Guard Sweep (underhook + foot)</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Guard Passes Section -->
+<div class="section">
+    <div class="section-header">
+        <span>Guard Passes</span>
+        <span class="section-count">9 techniques</span>
+    </div>
+    <div class="two-column">
+        <div>
+            <div class="subsection">
+                <div class="subsection-header">Kneeling Passes</div>
+                <table>
+                    <tr>
+                        <th class="week-col">Wk</th>
+                        <th>Technique</th>
+                        <th class="check-col">L</th>
+                        <th class="check-col">P</th>
+                        <th class="check-col">C</th>
+                        <th class="check-col">M</th>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">3</td>
+                        <td class="technique-name">One Arm Under Leg Pass</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">3</td>
+                        <td class="technique-name">Knee Slide Pass</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">7</td>
+                        <td class="technique-name">Over the Leg Guard Pass</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">7</td>
+                        <td class="technique-name">Half Guard Pass (hook + hip elevation)</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">11</td>
+                        <td class="technique-name">Knee Slide Pass (sleeve control)</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">15</td>
+                        <td class="technique-name">Two Arms Under Legs Pass (kneeling)</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div>
+            <div class="subsection">
+                <div class="subsection-header">Standing Passes</div>
+                <table>
+                    <tr>
+                        <th class="week-col">Wk</th>
+                        <th>Technique</th>
+                        <th class="check-col">L</th>
+                        <th class="check-col">P</th>
+                        <th class="check-col">C</th>
+                        <th class="check-col">M</th>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">7</td>
+                        <td class="technique-name">Spider Guard Bull-Fight Pass (wheel)</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">7</td>
+                        <td class="technique-name">Spider Guard Bull-Fight Pass (hips fwd)</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">11</td>
+                        <td class="technique-name">Both Arms Under Legs Pass (standing)</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">15</td>
+                        <td class="technique-name">Leg Drag Pass</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- Page 2 Header -->
+<div class="header" style="margin-top: 0;">
+    <div>
+        <h1>Master Technique Checklist</h1>
+        <div class="header-subtitle">GB1 Fundamentals Curriculum - Sport Jiu-Jitsu Techniques (continued)</div>
+    </div>
+    <div class="header-meta">
+        Page 2
+    </div>
+</div>
+
+<!-- Escapes Section -->
+<div class="section">
+    <div class="section-header">
+        <span>Escapes</span>
+        <span class="section-count">17 techniques</span>
+    </div>
+    <div class="three-column">
+        <div>
+            <div class="subsection">
+                <div class="subsection-header">Mount Escapes</div>
+                <table>
+                    <tr>
+                        <th class="week-col">Wk</th>
+                        <th>Technique</th>
+                        <th class="check-col">L</th>
+                        <th class="check-col">P</th>
+                        <th class="check-col">C</th>
+                        <th class="check-col">M</th>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">4</td>
+                        <td class="technique-name">Bridge Escape (headlock)</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">4</td>
+                        <td class="technique-name">Bridge Escape (choke)</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">4</td>
+                        <td class="technique-name">Elbow Escape (knee closed)</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">16</td>
+                        <td class="technique-name">Bridge Escape</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">16</td>
+                        <td class="technique-name">Elbow Escape (knee open)</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">16</td>
+                        <td class="technique-name">Elbow Escape to Back Take</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div>
+            <div class="subsection">
+                <div class="subsection-header">Sidemount Escapes</div>
+                <table>
+                    <tr>
+                        <th class="week-col">Wk</th>
+                        <th>Technique</th>
+                        <th class="check-col">L</th>
+                        <th class="check-col">P</th>
+                        <th class="check-col">C</th>
+                        <th class="check-col">M</th>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">2</td>
+                        <td class="technique-name">Recover Closed Guard</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">2</td>
+                        <td class="technique-name">Leg Over Top (hip/head blocked)</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">2</td>
+                        <td class="technique-name">Escape to Turtle</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">14</td>
+                        <td class="technique-name">Recover Half Guard</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">14</td>
+                        <td class="technique-name">Anticipate Pass (elbow ctrl)</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">14</td>
+                        <td class="technique-name">Anticipate Pass (inversion)</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div>
+            <div class="subsection">
+                <div class="subsection-header">Back / KOB Escapes</div>
+                <table>
+                    <tr>
+                        <th class="week-col">Wk</th>
+                        <th>Technique</th>
+                        <th class="check-col">L</th>
+                        <th class="check-col">P</th>
+                        <th class="check-col">C</th>
+                        <th class="check-col">M</th>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">6</td>
+                        <td class="technique-name">Bridge Escape to Sidemount</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">6</td>
+                        <td class="technique-name">Bridge Escape to Guard</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">4</td>
+                        <td class="technique-name">KOB Escape (push belt)</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">16</td>
+                        <td class="technique-name">KOB Escape (turn to open guard)</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="subsection">
+                <div class="subsection-header">Turtle Escapes</div>
+                <table>
+                    <tr>
+                        <th class="week-col">Wk</th>
+                        <th>Technique</th>
+                        <th class="check-col">L</th>
+                        <th class="check-col">P</th>
+                        <th class="check-col">C</th>
+                        <th class="check-col">M</th>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">6</td>
+                        <td class="technique-name">Recover Guard (rear turtle)</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">6</td>
+                        <td class="technique-name">Recover Guard (front turtle)</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Takedowns Section -->
+<div class="section">
+    <div class="section-header">
+        <span>Takedowns & Guard Pulls</span>
+        <span class="section-count">3 techniques</span>
+    </div>
+    <div class="two-column">
+        <div>
+            <div class="subsection">
+                <div class="subsection-header">Takedowns</div>
+                <table>
+                    <tr>
+                        <th class="week-col">Wk</th>
+                        <th>Technique</th>
+                        <th class="check-col">L</th>
+                        <th class="check-col">P</th>
+                        <th class="check-col">C</th>
+                        <th class="check-col">M</th>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">2</td>
+                        <td class="technique-name">Double Leg from Turtle Position</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div>
+            <div class="subsection">
+                <div class="subsection-header">Guard Pulls & Entries</div>
+                <table>
+                    <tr>
+                        <th class="week-col">Wk</th>
+                        <th>Technique</th>
+                        <th class="check-col">L</th>
+                        <th class="check-col">P</th>
+                        <th class="check-col">C</th>
+                        <th class="check-col">M</th>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">1</td>
+                        <td class="technique-name">Pull to Closed Guard (foot on hip)</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">13</td>
+                        <td class="technique-name">Spider Guard Control (bullfight/posture)</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Transitions Section -->
+<div class="section">
+    <div class="section-header">
+        <span>Transitions & Controls</span>
+        <span class="section-count">10 techniques</span>
+    </div>
+    <div class="two-column">
+        <div>
+            <div class="subsection">
+                <div class="subsection-header">Guard Opening</div>
+                <table>
+                    <tr>
+                        <th class="week-col">Wk</th>
+                        <th>Technique</th>
+                        <th class="check-col">L</th>
+                        <th class="check-col">P</th>
+                        <th class="check-col">C</th>
+                        <th class="check-col">M</th>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">3</td>
+                        <td class="technique-name">Open Guard (kneeling, elbows closed)</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">3</td>
+                        <td class="technique-name">Open Guard (standing, sleeve control)</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">11</td>
+                        <td class="technique-name">Open Guard (kneeling, hands on belt)</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">11</td>
+                        <td class="technique-name">Open Guard (standing, collar/hip)</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">15</td>
+                        <td class="technique-name">Open Guard (standing, hands on pants)</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">15</td>
+                        <td class="technique-name">Open Guard (kneeling, hands on pants)</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div>
+            <div class="subsection">
+                <div class="subsection-header">Mount Transitions & Back Takes</div>
+                <table>
+                    <tr>
+                        <th class="week-col">Wk</th>
+                        <th>Technique</th>
+                        <th class="check-col">L</th>
+                        <th class="check-col">P</th>
+                        <th class="check-col">C</th>
+                        <th class="check-col">M</th>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">8</td>
+                        <td class="technique-name">Sidemount to Mount (switch base)</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">8</td>
+                        <td class="technique-name">Sidemount to Mount (knee slide)</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">12</td>
+                        <td class="technique-name">Take Back from Turtle (seatbelt)</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr class="technique-row">
+                        <td class="week-col">12</td>
+                        <td class="technique-name">Take Back from Turtle (lapel grip)</td>
+                        <td></td><td></td><td></td><td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Summary -->
+<div class="summary-box">
+    <div style="font-weight: bold; margin-bottom: 6px; font-size: 9pt;">GB1 Sport Jiu-Jitsu Progress Summary (64 techniques total)</div>
+    <div class="summary-grid">
+        <div class="summary-item">
+            <div class="number">16</div>
+            <div class="label">Submissions</div>
+        </div>
+        <div class="summary-item">
+            <div class="number">9</div>
+            <div class="label">Sweeps</div>
+        </div>
+        <div class="summary-item">
+            <div class="number">9</div>
+            <div class="label">Passes</div>
+        </div>
+        <div class="summary-item">
+            <div class="number">17</div>
+            <div class="label">Escapes</div>
+        </div>
+        <div class="summary-item">
+            <div class="number">3</div>
+            <div class="label">Takedowns</div>
+        </div>
+        <div class="summary-item">
+            <div class="number">10</div>
+            <div class="label">Transitions</div>
+        </div>
+    </div>
+    <div style="margin-top: 10px; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 8px; font-size: 8pt;">
+        <div><strong>Learned (L):</strong> _____ / 64</div>
+        <div><strong>Practiced (P):</strong> _____ / 64</div>
+        <div><strong>Competent (C):</strong> _____ / 64</div>
+        <div><strong>Mastered (M):</strong> _____ / 64</div>
+    </div>
+    <div style="margin-top: 8px; font-size: 8pt;">
+        <strong>Curriculum Completion:</strong> _____ % | <strong>Current Week:</strong> _____ / 16
+    </div>
+</div>
+
+<div class="footer">
+    BJJ Training Journal - Master Technique Checklist (GB1 Curriculum) | The Ouchie Method | ouchieorigami.com
+</div>
+
+</body>
+</html>

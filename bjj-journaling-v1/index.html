@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BJJ Journaling: 4-Week Intro Course | The Ouchie Method</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 11pt;
+            line-height: 1.5;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f9f9f9;
+        }
+
+        /* Header */
+        .site-header {
+            background: #1a1a1a;
+            color: white;
+            padding: 30px;
+            margin: -20px -20px 0 -20px;
+            text-align: center;
+        }
+
+        .site-header h1 {
+            font-size: 28pt;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .site-header .tagline {
+            font-size: 12pt;
+            opacity: 0.85;
+            font-style: italic;
+        }
+
+        .site-header .brand {
+            margin-top: 15px;
+            font-size: 10pt;
+            opacity: 0.7;
+        }
+
+        .site-header .brand a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .site-header .brand a:hover {
+            text-decoration: underline;
+        }
+
+        /* Navigation */
+        nav {
+            background: #333;
+            padding: 12px 20px;
+            margin: 0 -20px 25px -20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 10pt;
+            padding: 4px 0;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        nav a:hover {
+            border-bottom-color: #3498db;
+        }
+
+        /* Main content wrapper */
+        .content {
+            background: white;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 22pt;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #1a1a1a;
+        }
+
+        .tagline {
+            font-size: 11pt;
+            color: #555;
+            font-style: italic;
+            padding: 10px 15px;
+            background: #f5f5f5;
+            border-left: 4px solid #333;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 14pt;
+            font-weight: bold;
+            color: #fff;
+            background: #333;
+            padding: 6px 12px;
+            margin-top: 25px;
+            margin-bottom: 12px;
+        }
+
+        h2:first-child {
+            margin-top: 0;
+        }
+
+        h3 {
+            font-size: 11pt;
+            font-weight: bold;
+            color: #333;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 4px;
+            margin-top: 18px;
+            margin-bottom: 10px;
+        }
+
+        h4 {
+            font-size: 10pt;
+            font-weight: bold;
+            color: #444;
+            margin-top: 12px;
+            margin-bottom: 6px;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 12px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+            font-size: 10pt;
+        }
+
+        th, td {
+            border: 1px solid #999;
+            padding: 6px 10px;
+            text-align: left;
+        }
+
+        th {
+            background: #eee;
+            font-weight: bold;
+            font-size: 9pt;
+            text-transform: uppercase;
+        }
+
+        tr:hover {
+            background: #f5f9fc;
+        }
+
+        /* Worksheet links */
+        .worksheet-link {
+            color: #2980b9;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .worksheet-link:hover {
+            text-decoration: underline;
+            color: #1a5276;
+        }
+
+        .format-list {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .format-list li {
+            padding: 4px 0;
+        }
+
+        .format-list strong {
+            display: inline-block;
+            min-width: 160px;
+        }
+
+        .outcomes-list {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .outcomes-list li {
+            padding: 5px 0;
+            padding-left: 28px;
+            position: relative;
+        }
+
+        .outcomes-list li::before {
+            content: "☐";
+            position: absolute;
+            left: 0;
+            font-size: 14pt;
+        }
+
+        .week-section {
+            background: #fafafa;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 18px;
+        }
+
+        .week-section h3 {
+            margin-top: 0;
+            background: #555;
+            color: #fff;
+            padding: 8px 12px;
+            margin: -15px -15px 15px -15px;
+            border-bottom: none;
+        }
+
+        .week-section h4 {
+            color: #333;
+        }
+
+        .worksheets-needed {
+            background: #e8f4f8;
+            border: 1px solid #b8d4e3;
+            border-left: 4px solid #3498db;
+            padding: 10px 15px;
+            margin-top: 12px;
+        }
+
+        .worksheets-needed strong {
+            display: block;
+            font-size: 9pt;
+            text-transform: uppercase;
+            color: #2c3e50;
+            margin-bottom: 6px;
+        }
+
+        .starter-kit {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .starter-kit-section {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 15px;
+        }
+
+        .starter-kit-section h4 {
+            margin-top: 0;
+            color: #333;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 6px;
+        }
+
+        .starter-kit-section.immediate h4 {
+            color: #27ae60;
+            border-bottom-color: #27ae60;
+        }
+
+        .starter-kit-section.later h4 {
+            color: #7f8c8d;
+        }
+
+        .notebook-template {
+            background: #f5f5f5;
+            border: 1px solid #ccc;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 9pt;
+            line-height: 1.4;
+            white-space: pre;
+            overflow-x: auto;
+            margin-bottom: 18px;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .tips-section {
+            background: #fffef0;
+            border: 1px solid #e0d890;
+            padding: 15px;
+            margin-bottom: 18px;
+        }
+
+        .tips-section h4 {
+            margin-top: 0;
+            color: #665500;
+        }
+
+        .tips-section ol, .tips-section ul {
+            margin-bottom: 0;
+        }
+
+        .footer {
+            margin-top: 30px;
+            padding: 25px;
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            margin: 0 -20px -20px -20px;
+        }
+
+        .footer p {
+            margin-bottom: 5px;
+            opacity: 0.9;
+        }
+
+        .footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ccc;
+            margin: 25px 0;
+        }
+
+        .code-col {
+            width: 55px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 700px) {
+            .site-header {
+                padding: 15px;
+            }
+
+            .site-header h1 {
+                font-size: 16pt;
+                margin-bottom: 4px;
+            }
+
+            .site-header .tagline {
+                font-size: 10pt;
+                margin-bottom: 0;
+            }
+
+            .site-header .brand {
+                display: none;
+            }
+
+            nav {
+                padding: 8px 0;
+                margin: 0 -20px 20px -20px;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            nav ul {
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                gap: 0;
+                padding: 0 15px;
+                min-width: max-content;
+            }
+
+            nav a {
+                padding: 6px 12px;
+                white-space: nowrap;
+                font-size: 9pt;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .two-column, .starter-kit {
+                grid-template-columns: 1fr;
+            }
+
+            .format-list strong {
+                min-width: auto;
+                display: block;
+            }
+        }
+
+        @media print {
+            .site-header, nav, .footer {
+                display: none;
+            }
+            body {
+                padding: 0;
+                background: white;
+            }
+            .content {
+                box-shadow: none;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <h1>BJJ Journaling: 4-Week Intro Course</h1>
+    <p class="tagline">Track training, measure progress, and accelerate improvement</p>
+    <p class="brand">The Ouchie Method | <a href="https://ouchieorigami.com">ouchieorigami.com</a></p>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#worksheets">Worksheets</a></li>
+        <li><a href="#course-structure">4-Week Course</a></li>
+        <li><a href="#starter-kit">Starter Kit</a></li>
+        <li><a href="#notebook">Notebook Templates</a></li>
+        <li><a href="#metrics">Metrics</a></li>
+        <li><a href="#tips">Tips</a></li>
+    </ul>
+</nav>
+
+<div class="content">
+
+<!-- Overview Section -->
+<section id="overview">
+<h2>Course Overview</h2>
+
+<h3>Purpose</h3>
+<p>This course teaches BJJ students how to systematically journal their training, track sparring performance, and document technique progress. The system is designed to be gym-agnostic and works with any BJJ curriculum.</p>
+
+<h3>Format</h3>
+<ul class="format-list">
+    <li><strong>Duration:</strong> 4 weeks (repeating cycle)</li>
+    <li><strong>Weekly Commitment:</strong> 15-30 minutes journaling time</li>
+    <li><strong>Delivery:</strong> Printable worksheets + notebook templates</li>
+</ul>
+
+<h3>Student Outcomes</h3>
+<p>By the end of this 4-week cycle, students will:</p>
+<ul class="outcomes-list">
+    <li>Log every training session with key metrics</li>
+    <li>Track sparring attempts and success rates</li>
+    <li>Document techniques learned with competency levels</li>
+    <li>Complete weekly and monthly reviews</li>
+    <li>Identify patterns and areas for improvement</li>
+</ul>
+</section>
+
+<!-- Worksheets Section -->
+<section id="worksheets">
+<h2>Worksheet System</h2>
+
+<h3>Core Worksheets (Use Every Session/Week/Month)</h3>
+<table>
+    <tr>
+        <th style="width: 35px;">#</th>
+        <th>Worksheet</th>
+        <th style="width: 100px;">Frequency</th>
+        <th>Purpose</th>
+    </tr>
+    <tr>
+        <td>01</td>
+        <td><a href="worksheets/01-daily-training-log.html" target="_blank" class="worksheet-link">Daily Training Log</a></td>
+        <td>Each session</td>
+        <td>Log techniques, sparring, physical/mental state</td>
+    </tr>
+    <tr>
+        <td>02</td>
+        <td><a href="worksheets/02-weekly-review.html" target="_blank" class="worksheet-link">Weekly Review</a></td>
+        <td>End of week</td>
+        <td>Summarize volume, stats, wins/lessons, set goals</td>
+    </tr>
+    <tr>
+        <td>03</td>
+        <td><a href="worksheets/03-monthly-review.html" target="_blank" class="worksheet-link">Monthly Review</a></td>
+        <td>End of month</td>
+        <td>Trends, comparisons, technique progress, planning</td>
+    </tr>
+    <tr>
+        <td>04</td>
+        <td><a href="worksheets/04-monthly-habit-tracker.html" target="_blank" class="worksheet-link">Monthly Habit Tracker</a></td>
+        <td>Daily</td>
+        <td>Track training-related habits (31 days × habits)</td>
+    </tr>
+</table>
+
+<h3>Technique Tracking Worksheets (Reference/Update as Needed)</h3>
+<table>
+    <tr>
+        <th style="width: 35px;">#</th>
+        <th>Worksheet</th>
+        <th>Purpose</th>
+    </tr>
+    <tr>
+        <td>05</td>
+        <td><a href="worksheets/05-position-tracker-template.html" target="_blank" class="worksheet-link">Position Tracker</a></td>
+        <td>Track techniques by position (one per position)</td>
+    </tr>
+    <tr>
+        <td>06</td>
+        <td><a href="worksheets/06-technique-type-tracker.html" target="_blank" class="worksheet-link">Technique Type Tracker</a></td>
+        <td>Track by category (subs, sweeps, passes, escapes, takedowns)</td>
+    </tr>
+    <tr>
+        <td>07</td>
+        <td><a href="worksheets/07-master-technique-checklist.html" target="_blank" class="worksheet-link">Master Technique Checklist</a></td>
+        <td>Comprehensive list of all techniques learned</td>
+    </tr>
+    <tr>
+        <td>07</td>
+        <td><a href="worksheets/07-master-technique-checklist-gb1.html" target="_blank" class="worksheet-link">Master Technique Checklist (GB1)</a></td>
+        <td>Pre-filled with 64 GB1 sport jiu-jitsu techniques</td>
+    </tr>
+</table>
+
+<h3>Competency Matrices (Choose One Based on Experience)</h3>
+<table>
+    <tr>
+        <th style="width: 35px;">#</th>
+        <th>Worksheet</th>
+        <th>Levels</th>
+        <th>Best For</th>
+    </tr>
+    <tr>
+        <td>08</td>
+        <td><a href="worksheets/08-competency-matrix-beginner.html" target="_blank" class="worksheet-link">Beginner Matrix</a></td>
+        <td>4 (Seen → Drilled → Execute → Live)</td>
+        <td>White belts, first 6 months</td>
+    </tr>
+    <tr>
+        <td>09</td>
+        <td><a href="worksheets/09-competency-matrix-intermediate.html" target="_blank" class="worksheet-link">Intermediate Matrix</a></td>
+        <td>5 (+ Slow/Fast execution split)</td>
+        <td>Blue belts, 6mo - 2yr</td>
+    </tr>
+    <tr>
+        <td>10</td>
+        <td><a href="worksheets/10-competency-matrix-advanced.html" target="_blank" class="worksheet-link">Advanced Matrix</a></td>
+        <td>6 (+ Rep counts, consistency tracking)</td>
+        <td>Purple+ or data-focused students</td>
+    </tr>
+</table>
+
+<h3>Sparring Analytics</h3>
+<table>
+    <tr>
+        <th style="width: 35px;">#</th>
+        <th>Worksheet</th>
+        <th>Purpose</th>
+    </tr>
+    <tr>
+        <td>11</td>
+        <td><a href="worksheets/11-sparring-log.html" target="_blank" class="worksheet-link">Sparring Log</a></td>
+        <td>Detailed round-by-round tracking with tallies</td>
+    </tr>
+    <tr>
+        <td>12</td>
+        <td><a href="worksheets/12-sparring-summary.html" target="_blank" class="worksheet-link">Sparring Summary</a></td>
+        <td>Weekly/monthly rollup with success rates and trends</td>
+    </tr>
+</table>
+</section>
+
+<!-- 4-Week Course Structure -->
+<section id="course-structure">
+<h2>4-Week Course Structure</h2>
+
+<div class="week-section">
+    <h3>Week 1: Foundation Setup</h3>
+
+    <h4>Learning Objectives:</h4>
+    <ul>
+        <li>Understand the journaling system</li>
+        <li>Set up core worksheets</li>
+        <li>Establish logging habit</li>
+    </ul>
+
+    <h4>Activities:</h4>
+    <ol>
+        <li><strong>Choose your journaling medium:</strong>
+            <ul>
+                <li>Printed worksheets in a binder</li>
+                <li>Copy templates into a notebook</li>
+                <li>Digital (future web version)</li>
+            </ul>
+        </li>
+        <li><strong>Set up your journal:</strong>
+            <ul>
+                <li>Print/prepare Daily Training Logs (5-7 copies)</li>
+                <li>Print first Weekly Review</li>
+                <li>Print Monthly Habit Tracker</li>
+                <li>Choose and print one Competency Matrix (Beginner recommended for new journalers)</li>
+            </ul>
+        </li>
+        <li><strong>First session logging:</strong>
+            <ul>
+                <li>Complete your first Daily Training Log</li>
+                <li>Focus on: Date, class type, techniques drilled</li>
+                <li>Don't worry about perfect sparring tracking yet</li>
+            </ul>
+        </li>
+    </ol>
+
+    <div class="worksheets-needed">
+        <strong>Week 1 Worksheets Needed:</strong>
+        <a href="worksheets/01-daily-training-log.html" target="_blank" class="worksheet-link">Daily Training Log</a> (×5) &nbsp;|&nbsp;
+        <a href="worksheets/02-weekly-review.html" target="_blank" class="worksheet-link">Weekly Review</a> (×1) &nbsp;|&nbsp;
+        <a href="worksheets/04-monthly-habit-tracker.html" target="_blank" class="worksheet-link">Monthly Habit Tracker</a> (×1) &nbsp;|&nbsp;
+        <a href="worksheets/08-competency-matrix-beginner.html" target="_blank" class="worksheet-link">Competency Matrix Beginner</a> (×1)
+    </div>
+</div>
+
+<div class="week-section">
+    <h3>Week 2: Sparring Focus</h3>
+
+    <h4>Learning Objectives:</h4>
+    <ul>
+        <li>Track sparring rounds effectively</li>
+        <li>Understand attempt vs. success tracking</li>
+        <li>Calculate basic success rates</li>
+    </ul>
+
+    <h4>Activities:</h4>
+    <ol>
+        <li>Add sparring tracking to daily logs</li>
+        <li>Print and use Sparring Log for detailed tracking</li>
+        <li><strong>Learn tally mark system:</strong>
+            <ul>
+                <li>A = Attempted</li>
+                <li>S = Successfully landed</li>
+                <li>D = Defended against opponent</li>
+            </ul>
+        </li>
+        <li><strong>Track at minimum:</strong>
+            <ul>
+                <li>Submissions (attempted/landed/defended)</li>
+                <li>Sweeps (attempted/landed)</li>
+                <li>Passes (attempted/landed)</li>
+            </ul>
+        </li>
+        <li><strong>Calculate your first success rates:</strong><br>
+            Success Rate = Landed ÷ Attempted × 100
+        </li>
+    </ol>
+
+    <div class="worksheets-needed">
+        <strong>Week 2 Worksheets Needed:</strong>
+        <a href="worksheets/01-daily-training-log.html" target="_blank" class="worksheet-link">Daily Training Log</a> (×5) &nbsp;|&nbsp;
+        <a href="worksheets/11-sparring-log.html" target="_blank" class="worksheet-link">Sparring Log</a> (×1)
+    </div>
+</div>
+
+<div class="week-section">
+    <h3>Week 3: Technique Tracking Deep Dive</h3>
+
+    <h4>Learning Objectives:</h4>
+    <ul>
+        <li>Document techniques systematically</li>
+        <li>Use competency levels meaningfully</li>
+        <li>Identify technique gaps</li>
+    </ul>
+
+    <h4>Activities:</h4>
+    <ol>
+        <li>Set up Position Trackers for 2-3 positions you train most</li>
+        <li>Add techniques to your Competency Matrix</li>
+        <li><strong>For each technique, record:</strong>
+            <ul>
+                <li>Name</li>
+                <li>Position it's from</li>
+                <li>Current competency level</li>
+                <li>Key details that help you remember it</li>
+            </ul>
+        </li>
+        <li>Review: What positions do you train most? Least?</li>
+    </ol>
+
+    <div class="worksheets-needed">
+        <strong>Week 3 Worksheets Needed:</strong>
+        <a href="worksheets/01-daily-training-log.html" target="_blank" class="worksheet-link">Daily Training Log</a> (×5) &nbsp;|&nbsp;
+        <a href="worksheets/05-position-tracker-template.html" target="_blank" class="worksheet-link">Position Tracker</a> (×3) &nbsp;|&nbsp;
+        <a href="worksheets/06-technique-type-tracker.html" target="_blank" class="worksheet-link">Technique Type Tracker</a> (×2) [optional]
+    </div>
+</div>
+
+<div class="week-section">
+    <h3>Week 4: Review & Analysis</h3>
+
+    <h4>Learning Objectives:</h4>
+    <ul>
+        <li>Complete first full review cycle</li>
+        <li>Identify patterns and insights</li>
+        <li>Set goals for next cycle</li>
+    </ul>
+
+    <h4>Activities:</h4>
+    <ol>
+        <li>Complete Weekly Review for Week 4</li>
+        <li>Complete Monthly Review (or 4-Week Review)</li>
+        <li>Complete Sparring Summary for the month</li>
+        <li><strong>Analysis questions:</strong>
+            <ul>
+                <li>What techniques did you drill most?</li>
+                <li>What positions do you spend most time in during sparring?</li>
+                <li>What submissions do you land? Get caught by?</li>
+                <li>What's your sweep success rate? Pass rate?</li>
+            </ul>
+        </li>
+        <li><strong>Set goals for next 4-week cycle:</strong>
+            <ul>
+                <li>One position to focus on</li>
+                <li>One technique to level up</li>
+                <li>One weakness to address</li>
+            </ul>
+        </li>
+    </ol>
+
+    <div class="worksheets-needed">
+        <strong>Week 4 Worksheets Needed:</strong>
+        <a href="worksheets/01-daily-training-log.html" target="_blank" class="worksheet-link">Daily Training Log</a> (×5) &nbsp;|&nbsp;
+        <a href="worksheets/02-weekly-review.html" target="_blank" class="worksheet-link">Weekly Review</a> (×1) &nbsp;|&nbsp;
+        <a href="worksheets/03-monthly-review.html" target="_blank" class="worksheet-link">Monthly Review</a> (×1) &nbsp;|&nbsp;
+        <a href="worksheets/12-sparring-summary.html" target="_blank" class="worksheet-link">Sparring Summary</a> (×1)
+    </div>
+</div>
+</section>
+
+<!-- Starter Kit Section -->
+<section id="starter-kit">
+<h2>Recommended Starter Kit</h2>
+<p>Print these worksheets to begin:</p>
+
+<div class="starter-kit">
+    <div class="starter-kit-section immediate">
+        <h4>Immediate (Week 1)</h4>
+        <ul>
+            <li><a href="worksheets/01-daily-training-log.html" target="_blank" class="worksheet-link">Daily Training Log</a> × 20 (one month's worth at 5x/week)</li>
+            <li><a href="worksheets/02-weekly-review.html" target="_blank" class="worksheet-link">Weekly Review</a> × 4</li>
+            <li><a href="worksheets/03-monthly-review.html" target="_blank" class="worksheet-link">Monthly Review</a> × 1</li>
+            <li><a href="worksheets/04-monthly-habit-tracker.html" target="_blank" class="worksheet-link">Monthly Habit Tracker</a> × 1</li>
+            <li><a href="worksheets/08-competency-matrix-beginner.html" target="_blank" class="worksheet-link">Competency Matrix (Beginner)</a> × 1</li>
+        </ul>
+    </div>
+    <div class="starter-kit-section later">
+        <h4>Add Later</h4>
+        <ul>
+            <li><a href="worksheets/11-sparring-log.html" target="_blank" class="worksheet-link">Sparring Log</a> × 4 (one per week)</li>
+            <li><a href="worksheets/12-sparring-summary.html" target="_blank" class="worksheet-link">Sparring Summary</a> × 1</li>
+            <li><a href="worksheets/05-position-tracker-template.html" target="_blank" class="worksheet-link">Position Tracker</a> × 5 (one per position)</li>
+            <li><a href="worksheets/07-master-technique-checklist.html" target="_blank" class="worksheet-link">Master Technique Checklist</a> × 1</li>
+        </ul>
+    </div>
+</div>
+</section>
+
+<!-- Notebook Templates Section -->
+<section id="notebook">
+<h2>Using a Notebook Instead of Worksheets</h2>
+<p>If you prefer a notebook over printed worksheets, here's how to recreate the templates:</p>
+
+<h3>Daily Training Log (1 page per session)</h3>
+<div class="notebook-template">DATE: ___________  DAY: _____  WEEK #: _____
+
+SESSION INFO
+Class Type: [ ] Fund  [ ] All Levels  [ ] Advanced  [ ] Open Mat
+Time: _______  Duration: _______ min  Instructor: _______________
+
+TECHNIQUES DRILLED
+| Position | Technique | Reps | Quality (1-5) | Notes |
+|----------|-----------|------|---------------|-------|
+|          |           |      |               |       |
+|          |           |      |               |       |
+|          |           |      |               |       |
+
+SPARRING (per round)
+| Rd | Partner | Start | End | Subs A/L | Sweeps A/L | Passes A/L |
+|----|---------|-------|-----|----------|------------|------------|
+| 1  |         |       |     |          |            |            |
+| 2  |         |       |     |          |            |            |
+
+SESSION TOTALS
+Subs: ___A ___L ___D | Sweeps: ___A ___L | Passes: ___A ___L
+
+PHYSICAL STATE (1-5): Before ___ After ___
+MENTAL STATE (1-5): ___
+
+WHAT WORKED: _________________________________
+WHAT NEEDS WORK: _____________________________
+KEY INSIGHT: _________________________________
+
+NEXT SESSION FOCUS: __________________________</div>
+
+<h3>Weekly Review (1 page per week)</h3>
+<div class="notebook-template">WEEK #: _____  DATES: _________ to _________
+
+TRAINING VOLUME
+| Mon | Tue | Wed | Thu | Fri | Sat | Sun |
+|-----|-----|-----|-----|-----|-----|-----|
+|     |     |     |     |     |     |     |
+
+Sessions: ___ / ___ planned  |  Total Minutes: ___  |  Rounds: ___
+
+SPARRING STATS
+| Category    | Att | Landed | Def | Rate % |
+|-------------|-----|--------|-----|--------|
+| Submissions |     |        |     |        |
+| Sweeps      |     |        |     |        |
+| Passes      |     |        |     |        |
+
+WINS THIS WEEK: ________________________________
+LESSONS LEARNED: _______________________________
+GOAL ACHIEVEMENT: [ ] Full  [ ] Partial  [ ] Not Yet
+
+NEXT WEEK
+Primary Goal: _________________________________
+Technique Focus: ______________________________
+Planned Days: [ ] M [ ] T [ ] W [ ] Th [ ] F [ ] Sa [ ] Su</div>
+
+<h3>Habit Tracker (1 page per month)</h3>
+<p>Draw a grid:</p>
+<ul>
+    <li>Left column: Day numbers 1-31</li>
+    <li>Top row: Habit names (vertical text)</li>
+    <li>Mark with X (done), O (partial), - (skipped), blank (missed)</li>
+</ul>
+</section>
+
+<!-- Metrics Section -->
+<section id="metrics">
+<h2>Key Metrics to Track</h2>
+
+<div class="two-column">
+    <div>
+        <h3>Volume Metrics</h3>
+        <ul>
+            <li>Training sessions per week/month</li>
+            <li>Total training minutes</li>
+            <li>Sparring rounds per session</li>
+            <li>Techniques drilled</li>
+        </ul>
+
+        <h3>Progress Metrics</h3>
+        <ul>
+            <li>Techniques at each competency level</li>
+            <li>Positions trained (frequency)</li>
+            <li>Goals achieved per week/month</li>
+        </ul>
+    </div>
+    <div>
+        <h3>Performance Metrics</h3>
+        <table>
+            <tr>
+                <th>Metric</th>
+                <th>Formula</th>
+            </tr>
+            <tr>
+                <td>Submission Success Rate</td>
+                <td>Subs Landed ÷ Subs Attempted × 100</td>
+            </tr>
+            <tr>
+                <td>Sweep Success Rate</td>
+                <td>Sweeps Landed ÷ Sweeps Attempted × 100</td>
+            </tr>
+            <tr>
+                <td>Pass Success Rate</td>
+                <td>Passes Landed ÷ Passes Attempted × 100</td>
+            </tr>
+            <tr>
+                <td>Defense Rate</td>
+                <td>Defended ÷ (Defended + Caught) × 100</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<h3>Position Key (Standard Abbreviations)</h3>
+
+<div class="two-column">
+    <table>
+        <tr>
+            <th class="code-col">Code</th>
+            <th>Position</th>
+        </tr>
+        <tr><td class="code-col">G</td><td>Guard (specify Top/Bottom)</td></tr>
+        <tr><td class="code-col">GB</td><td>Guard Bottom (playing guard)</td></tr>
+        <tr><td class="code-col">GT</td><td>Guard Top (in opponent's guard)</td></tr>
+        <tr><td class="code-col">M</td><td>Mount</td></tr>
+        <tr><td class="code-col">MB</td><td>Mount Bottom (being mounted)</td></tr>
+        <tr><td class="code-col">MT</td><td>Mount Top (having mount)</td></tr>
+        <tr><td class="code-col">SC</td><td>Side Control</td></tr>
+        <tr><td class="code-col">SCB</td><td>Side Control Bottom</td></tr>
+        <tr><td class="code-col">SCT</td><td>Side Control Top</td></tr>
+    </table>
+    <table>
+        <tr>
+            <th class="code-col">Code</th>
+            <th>Position</th>
+        </tr>
+        <tr><td class="code-col">B</td><td>Back</td></tr>
+        <tr><td class="code-col">BA</td><td>Back Attacking (have back)</td></tr>
+        <tr><td class="code-col">BD</td><td>Back Defending (giving back)</td></tr>
+        <tr><td class="code-col">T</td><td>Turtle</td></tr>
+        <tr><td class="code-col">TT</td><td>Turtle Top (attacking turtle)</td></tr>
+        <tr><td class="code-col">TB</td><td>Turtle Bottom (in turtle)</td></tr>
+        <tr><td class="code-col">S</td><td>Standing</td></tr>
+        <tr><td class="code-col">HG</td><td>Half Guard</td></tr>
+    </table>
+</div>
+
+<h3>Technique Type Abbreviations</h3>
+
+<table style="width: 60%;">
+    <tr>
+        <th class="code-col">Code</th>
+        <th>Type</th>
+    </tr>
+    <tr><td class="code-col">SUB</td><td>Submission</td></tr>
+    <tr><td class="code-col">SWP</td><td>Sweep</td></tr>
+    <tr><td class="code-col">PAS</td><td>Guard Pass</td></tr>
+    <tr><td class="code-col">ESC</td><td>Escape</td></tr>
+    <tr><td class="code-col">TKD</td><td>Takedown</td></tr>
+    <tr><td class="code-col">TRN</td><td>Transition</td></tr>
+    <tr><td class="code-col">CTL</td><td>Control/Position</td></tr>
+    <tr><td class="code-col">DEF</td><td>Defense</td></tr>
+</table>
+</section>
+
+<!-- Tips Section -->
+<section id="tips">
+<h2>Tips for Success</h2>
+
+<div class="two-column">
+    <div class="tips-section">
+        <h4>Getting Started</h4>
+        <ol>
+            <li><strong>Start simple</strong> - Just log date, techniques, and a few sparring notes</li>
+            <li><strong>Build gradually</strong> - Add more detail as the habit forms</li>
+            <li><strong>Log immediately</strong> - Fill out your log right after class while memory is fresh</li>
+            <li><strong>Review weekly</strong> - The weekly review is where insights emerge</li>
+        </ol>
+    </div>
+    <div class="tips-section">
+        <h4>Common Mistakes to Avoid</h4>
+        <ol>
+            <li><strong>Trying to track everything</strong> - Start with essentials, add complexity later</li>
+            <li><strong>Skipping reviews</strong> - The review is more valuable than the daily logging</li>
+            <li><strong>Not being honest</strong> - Accurate data matters more than impressive numbers</li>
+            <li><strong>Overcomplicating technique names</strong> - Use whatever helps you remember</li>
+        </ol>
+    </div>
+</div>
+
+<div class="tips-section">
+    <h4>Signs You're Getting Value</h4>
+    <ul>
+        <li>You notice patterns in your sparring</li>
+        <li>You can identify your strongest/weakest positions</li>
+        <li>You remember techniques better after logging them</li>
+        <li>Your success rates improve over time</li>
+        <li>You set and achieve specific goals</li>
+    </ul>
+</div>
+
+<h2>Next Steps After 4 Weeks</h2>
+
+<p>After completing your first 4-week cycle:</p>
+<ol>
+    <li><strong>Review your data</strong> - What patterns do you see?</li>
+    <li><strong>Adjust your system</strong> - Drop what's not useful, add what's missing</li>
+    <li><strong>Set new goals</strong> - Based on your insights</li>
+    <li><strong>Continue the cycle</strong> - The system improves with consistency</li>
+</ol>
+
+<p>Consider upgrading:</p>
+<ul>
+    <li>Move to <a href="worksheets/09-competency-matrix-intermediate.html" target="_blank" class="worksheet-link">Intermediate Competency Matrix</a> after 2-3 cycles</li>
+    <li>Add more <a href="worksheets/05-position-tracker-template.html" target="_blank" class="worksheet-link">Position Trackers</a> as your game expands</li>
+    <li>Create technique chains based on sparring patterns</li>
+</ul>
+</section>
+
+</div>
+
+<footer class="footer">
+    <p><strong>The Ouchie Method</strong> - BJJ Journaling System</p>
+    <p><a href="https://ouchieorigami.com">ouchieorigami.com</a></p>
+    <p style="margin-top: 15px; font-size: 9pt; opacity: 0.7;">All worksheets are designed for 8.5" × 11" (letter) paper printing.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sparring Summary - BJJ Journal</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 10pt;
+            line-height: 1.3;
+            color: #333;
+            width: 7.5in;
+            margin: 0 auto;
+            padding: 0.25in;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+                width: 100%;
+            }
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 2px solid #333;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+        }
+
+        .header h1 {
+            font-size: 16pt;
+            font-weight: bold;
+        }
+
+        .header-meta {
+            font-size: 9pt;
+        }
+
+        .header-meta .line {
+            border-bottom: 1px solid #333;
+            min-width: 80px;
+            display: inline-block;
+        }
+
+        .section {
+            margin-bottom: 12px;
+        }
+
+        .section-header {
+            background: #333;
+            color: white;
+            padding: 4px 8px;
+            font-size: 10pt;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 9pt;
+        }
+
+        th, td {
+            border: 1px solid #999;
+            padding: 4px 6px;
+            text-align: center;
+        }
+
+        th {
+            background: #eee;
+            font-weight: bold;
+            font-size: 8pt;
+            text-transform: uppercase;
+        }
+
+        .category-col {
+            width: 18%;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .data-col {
+            width: 10%;
+        }
+
+        .rate-col {
+            width: 12%;
+            background: #f9f9f9;
+        }
+
+        .row-data td {
+            height: 22px;
+        }
+
+        .weekly-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .week-box {
+            border: 1px solid #999;
+            padding: 8px;
+        }
+
+        .week-box h4 {
+            font-size: 9pt;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 4px;
+            margin-bottom: 6px;
+            text-align: center;
+        }
+
+        .week-stats {
+            font-size: 8pt;
+        }
+
+        .week-stats .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 2px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .stat-highlight {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .stat-box {
+            border: 1px solid #999;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .stat-box .number {
+            font-size: 20pt;
+            font-weight: bold;
+            line-height: 1;
+            min-height: 28px;
+        }
+
+        .stat-box .label {
+            font-size: 8pt;
+            color: #666;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .notes-area {
+            border: 1px solid #999;
+            min-height: 50px;
+            padding: 6px;
+        }
+
+        .field-group {
+            margin-bottom: 8px;
+        }
+
+        .field-group label {
+            font-size: 8pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #555;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .input-line {
+            border-bottom: 1px solid #999;
+            min-height: 18px;
+        }
+
+        .footer {
+            margin-top: 12px;
+            padding-top: 8px;
+            border-top: 1px solid #ccc;
+            font-size: 8pt;
+            color: #666;
+            text-align: center;
+        }
+
+        .trend-cell {
+            font-size: 12pt;
+        }
+
+        .formula-note {
+            font-size: 7pt;
+            color: #888;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Sparring Summary</h1>
+    <div class="header-meta">
+        <span>Period: <span class="line"></span></span>
+        <span style="margin-left: 15px;">Type: <span class="line" style="min-width: 60px;"></span> (Week / Month)</span>
+    </div>
+</div>
+
+<!-- Volume Stats -->
+<div class="section">
+    <div class="section-header">Volume Statistics</div>
+    <div class="stat-highlight">
+        <div class="stat-box">
+            <div class="number"></div>
+            <div class="label">Total Sessions</div>
+        </div>
+        <div class="stat-box">
+            <div class="number"></div>
+            <div class="label">Total Rounds</div>
+        </div>
+        <div class="stat-box">
+            <div class="number"></div>
+            <div class="label">Total Minutes</div>
+        </div>
+        <div class="stat-box">
+            <div class="number"></div>
+            <div class="label">Unique Partners</div>
+        </div>
+        <div class="stat-box">
+            <div class="number"></div>
+            <div class="label">Avg Rounds/Session</div>
+        </div>
+    </div>
+</div>
+
+<!-- Technique Statistics -->
+<div class="section">
+    <div class="section-header">Technique Statistics</div>
+    <table>
+        <tr>
+            <th class="category-col">Category</th>
+            <th class="data-col">Attempted</th>
+            <th class="data-col">Landed</th>
+            <th class="rate-col">Success Rate</th>
+            <th class="data-col">Defended</th>
+            <th class="rate-col">Defense Rate</th>
+            <th class="data-col">Trend</th>
+        </tr>
+        <tr class="row-data">
+            <td class="category-col">Submissions</td>
+            <td></td>
+            <td></td>
+            <td class="rate-col"></td>
+            <td></td>
+            <td class="rate-col"></td>
+            <td class="trend-cell"></td>
+        </tr>
+        <tr class="row-data">
+            <td class="category-col">Sweeps</td>
+            <td></td>
+            <td></td>
+            <td class="rate-col"></td>
+            <td></td>
+            <td class="rate-col"></td>
+            <td class="trend-cell"></td>
+        </tr>
+        <tr class="row-data">
+            <td class="category-col">Guard Passes</td>
+            <td></td>
+            <td></td>
+            <td class="rate-col"></td>
+            <td></td>
+            <td class="rate-col"></td>
+            <td class="trend-cell"></td>
+        </tr>
+        <tr class="row-data">
+            <td class="category-col">Takedowns</td>
+            <td></td>
+            <td></td>
+            <td class="rate-col"></td>
+            <td></td>
+            <td class="rate-col"></td>
+            <td class="trend-cell"></td>
+        </tr>
+        <tr class="row-data">
+            <td class="category-col">Escapes</td>
+            <td></td>
+            <td></td>
+            <td class="rate-col"></td>
+            <td>N/A</td>
+            <td class="rate-col">N/A</td>
+            <td class="trend-cell"></td>
+        </tr>
+    </table>
+    <div class="formula-note">
+        Success Rate = Landed / Attempted × 100 | Defense Rate = Defended / (Defended + Caught) × 100 | Trend: ↑ improving, → same, ↓ declining
+    </div>
+</div>
+
+<!-- Weekly Breakdown (for monthly summaries) -->
+<div class="section">
+    <div class="section-header">Weekly Breakdown</div>
+    <div class="weekly-grid">
+        <div class="week-box">
+            <h4>Week 1</h4>
+            <div class="week-stats">
+                <div class="stat-row"><span>Sessions:</span><span></span></div>
+                <div class="stat-row"><span>Rounds:</span><span></span></div>
+                <div class="stat-row"><span>Subs Landed:</span><span></span></div>
+                <div class="stat-row"><span>Sweeps:</span><span></span></div>
+                <div class="stat-row"><span>Passes:</span><span></span></div>
+            </div>
+        </div>
+        <div class="week-box">
+            <h4>Week 2</h4>
+            <div class="week-stats">
+                <div class="stat-row"><span>Sessions:</span><span></span></div>
+                <div class="stat-row"><span>Rounds:</span><span></span></div>
+                <div class="stat-row"><span>Subs Landed:</span><span></span></div>
+                <div class="stat-row"><span>Sweeps:</span><span></span></div>
+                <div class="stat-row"><span>Passes:</span><span></span></div>
+            </div>
+        </div>
+        <div class="week-box">
+            <h4>Week 3</h4>
+            <div class="week-stats">
+                <div class="stat-row"><span>Sessions:</span><span></span></div>
+                <div class="stat-row"><span>Rounds:</span><span></span></div>
+                <div class="stat-row"><span>Subs Landed:</span><span></span></div>
+                <div class="stat-row"><span>Sweeps:</span><span></span></div>
+                <div class="stat-row"><span>Passes:</span><span></span></div>
+            </div>
+        </div>
+        <div class="week-box">
+            <h4>Week 4</h4>
+            <div class="week-stats">
+                <div class="stat-row"><span>Sessions:</span><span></span></div>
+                <div class="stat-row"><span>Rounds:</span><span></span></div>
+                <div class="stat-row"><span>Subs Landed:</span><span></span></div>
+                <div class="stat-row"><span>Sweeps:</span><span></span></div>
+                <div class="stat-row"><span>Passes:</span><span></span></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Top Techniques -->
+<div class="section">
+    <div class="section-header">Top Performing Techniques</div>
+    <div class="two-column">
+        <div>
+            <table style="font-size: 8pt;">
+                <tr>
+                    <th colspan="3">Most Successful (Landed)</th>
+                </tr>
+                <tr>
+                    <th style="width: 15%;">Rank</th>
+                    <th>Technique</th>
+                    <th style="width: 20%;">Count</th>
+                </tr>
+                <tr><td>1</td><td style="height: 18px;"></td><td></td></tr>
+                <tr><td>2</td><td style="height: 18px;"></td><td></td></tr>
+                <tr><td>3</td><td style="height: 18px;"></td><td></td></tr>
+                <tr><td>4</td><td style="height: 18px;"></td><td></td></tr>
+                <tr><td>5</td><td style="height: 18px;"></td><td></td></tr>
+            </table>
+        </div>
+        <div>
+            <table style="font-size: 8pt;">
+                <tr>
+                    <th colspan="3">Most Caught By (Need Defense)</th>
+                </tr>
+                <tr>
+                    <th style="width: 15%;">Rank</th>
+                    <th>Technique</th>
+                    <th style="width: 20%;">Count</th>
+                </tr>
+                <tr><td>1</td><td style="height: 18px;"></td><td></td></tr>
+                <tr><td>2</td><td style="height: 18px;"></td><td></td></tr>
+                <tr><td>3</td><td style="height: 18px;"></td><td></td></tr>
+                <tr><td>4</td><td style="height: 18px;"></td><td></td></tr>
+                <tr><td>5</td><td style="height: 18px;"></td><td></td></tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Position Analysis -->
+<div class="section">
+    <div class="section-header">Position Analysis</div>
+    <div class="two-column">
+        <div>
+            <div class="field-group">
+                <label>Dominant Positions (most time / success)</label>
+                <div class="notes-area" style="min-height: 40px;"></div>
+            </div>
+        </div>
+        <div>
+            <div class="field-group">
+                <label>Weak Positions (stuck / escaped from)</label>
+                <div class="notes-area" style="min-height: 40px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Comparison to Previous Period -->
+<div class="section">
+    <div class="section-header">Comparison to Previous Period</div>
+    <table>
+        <tr>
+            <th style="width: 25%;">Metric</th>
+            <th style="width: 20%;">Previous</th>
+            <th style="width: 20%;">Current</th>
+            <th style="width: 20%;">Change</th>
+            <th style="width: 15%;">Trend</th>
+        </tr>
+        <tr class="row-data">
+            <td style="text-align: left;">Total Rounds</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="trend-cell"></td>
+        </tr>
+        <tr class="row-data">
+            <td style="text-align: left;">Submission Rate</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="trend-cell"></td>
+        </tr>
+        <tr class="row-data">
+            <td style="text-align: left;">Sweep Rate</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="trend-cell"></td>
+        </tr>
+        <tr class="row-data">
+            <td style="text-align: left;">Pass Rate</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="trend-cell"></td>
+        </tr>
+        <tr class="row-data">
+            <td style="text-align: left;">Times Submitted</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="trend-cell"></td>
+        </tr>
+    </table>
+</div>
+
+<!-- Insights & Action Items -->
+<div class="section">
+    <div class="section-header">Insights & Action Items</div>
+    <div class="two-column">
+        <div>
+            <div class="field-group">
+                <label>Key Wins / Breakthroughs</label>
+                <div class="notes-area"></div>
+            </div>
+            <div class="field-group">
+                <label>Patterns Noticed</label>
+                <div class="notes-area"></div>
+            </div>
+        </div>
+        <div>
+            <div class="field-group">
+                <label>Areas Needing Work</label>
+                <div class="notes-area"></div>
+            </div>
+            <div class="field-group">
+                <label>Focus for Next Period</label>
+                <div class="notes-area"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    BJJ Training Journal - Sparring Summary | The Ouchie Method | ouchieorigami.com
+</div>
+
+</body>
+</html>

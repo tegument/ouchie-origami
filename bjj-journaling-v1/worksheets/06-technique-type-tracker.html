@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technique Type Tracker - BJJ Journal</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 10pt;
+            line-height: 1.3;
+            color: #333;
+            width: 7.5in;
+            margin: 0 auto;
+            padding: 0.25in;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+                width: 100%;
+            }
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 2px solid #333;
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+        }
+
+        .header h1 {
+            font-size: 16pt;
+            font-weight: bold;
+        }
+
+        .type-fill {
+            border-bottom: 2px solid #333;
+            min-width: 150px;
+            display: inline-block;
+        }
+
+        .header-meta {
+            font-size: 9pt;
+        }
+
+        .type-options {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            padding: 8px;
+            margin-bottom: 12px;
+            font-size: 9pt;
+        }
+
+        .checkbox {
+            width: 12px;
+            height: 12px;
+            border: 1px solid #333;
+            display: inline-block;
+            margin-right: 3px;
+        }
+
+        .section {
+            margin-bottom: 12px;
+        }
+
+        .section-header {
+            background: #333;
+            color: white;
+            padding: 4px 8px;
+            font-size: 10pt;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 9pt;
+        }
+
+        th, td {
+            border: 1px solid #999;
+            padding: 4px 6px;
+            text-align: left;
+        }
+
+        th {
+            background: #eee;
+            font-weight: bold;
+            font-size: 8pt;
+            text-transform: uppercase;
+        }
+
+        .narrow {
+            width: 30px;
+            text-align: center;
+        }
+
+        .medium {
+            width: 50px;
+            text-align: center;
+        }
+
+        .notes-area {
+            border: 1px solid #999;
+            min-height: 40px;
+            width: 100%;
+            padding: 4px;
+        }
+
+        .field-group {
+            margin-bottom: 6px;
+        }
+
+        .field-group label {
+            font-size: 8pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #555;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .input-line {
+            border-bottom: 1px solid #999;
+            min-height: 16px;
+            width: 100%;
+        }
+
+        .technique-table td {
+            height: 18px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .stat-box {
+            border: 1px solid #999;
+            padding: 6px;
+            text-align: center;
+        }
+
+        .stat-box .number {
+            font-size: 14pt;
+            font-weight: bold;
+            min-height: 18px;
+        }
+
+        .stat-box .label {
+            font-size: 7pt;
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        .footer {
+            margin-top: 10px;
+            padding-top: 8px;
+            border-top: 1px solid #ccc;
+            font-size: 8pt;
+            color: #666;
+            text-align: center;
+        }
+
+        .instructions {
+            font-size: 8pt;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .progress-section {
+            display: grid;
+            grid-template-columns: repeat(16, 1fr);
+            gap: 2px;
+            margin-top: 4px;
+        }
+
+        .week-cell {
+            border: 1px solid #ccc;
+            height: 20px;
+            text-align: center;
+            font-size: 7pt;
+            line-height: 20px;
+        }
+
+        .week-cell.header {
+            background: #eee;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Technique Type: <span class="type-fill"></span></h1>
+    <div class="header-meta">
+        Started: ______________
+    </div>
+</div>
+
+<div class="type-options">
+    <strong>Type (circle one):</strong>
+    <span class="checkbox"></span> Submissions
+    <span class="checkbox" style="margin-left: 15px;"></span> Sweeps
+    <span class="checkbox" style="margin-left: 15px;"></span> Guard Passes
+    <span class="checkbox" style="margin-left: 15px;"></span> Escapes
+    <span class="checkbox" style="margin-left: 15px;"></span> Takedowns
+    <span class="checkbox" style="margin-left: 15px;"></span> Transitions
+</div>
+
+<!-- Technique Catalog -->
+<div class="section">
+    <div class="section-header">Technique Catalog</div>
+    <div class="instructions">
+        Add each technique as you learn it. Competency: 1=Seen, 2=Drilled, 3=Execute, 4=Live. Track attempts (A) and successes (S) in sparring.
+    </div>
+    <table class="technique-table">
+        <tr>
+            <th style="width: 22%;">Technique Name</th>
+            <th style="width: 12%;">From Position</th>
+            <th class="narrow">1</th>
+            <th class="narrow">2</th>
+            <th class="narrow">3</th>
+            <th class="narrow">4</th>
+            <th class="medium">A</th>
+            <th class="medium">S</th>
+            <th class="medium">%</th>
+            <th>Setup / Key Details</th>
+        </tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    </table>
+</div>
+
+<!-- Running Totals -->
+<div class="section">
+    <div class="section-header">Running Totals</div>
+    <div class="stats-grid">
+        <div class="stat-box">
+            <div class="number"></div>
+            <div class="label">Total Techniques</div>
+        </div>
+        <div class="stat-box">
+            <div class="number"></div>
+            <div class="label">At Level 4</div>
+        </div>
+        <div class="stat-box">
+            <div class="number"></div>
+            <div class="label">Total Attempts</div>
+        </div>
+        <div class="stat-box">
+            <div class="number"></div>
+            <div class="label">Overall Success %</div>
+        </div>
+    </div>
+</div>
+
+<!-- Weekly Progress -->
+<div class="section">
+    <div class="section-header">Weekly Sparring Tracking</div>
+    <table style="font-size: 8pt;">
+        <tr>
+            <th style="width: 50px;">Week</th>
+            <th class="medium">Attempts</th>
+            <th class="medium">Successes</th>
+            <th class="medium">%</th>
+            <th>Best Technique This Week</th>
+            <th>Notes</th>
+        </tr>
+        <tr><td>1</td><td style="height: 16px;"></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>2</td><td style="height: 16px;"></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>3</td><td style="height: 16px;"></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>4</td><td style="height: 16px;"></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>5</td><td style="height: 16px;"></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>6</td><td style="height: 16px;"></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>7</td><td style="height: 16px;"></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>8</td><td style="height: 16px;"></td><td></td><td></td><td></td><td></td></tr>
+    </table>
+</div>
+
+<!-- Analysis -->
+<div class="section">
+    <div class="section-header">Analysis</div>
+    <div class="two-column">
+        <div>
+            <div class="field-group">
+                <label>Highest Success Rate Techniques</label>
+                <div class="notes-area"></div>
+            </div>
+            <div class="field-group">
+                <label>Most Attempted (need to improve)</label>
+                <div class="notes-area"></div>
+            </div>
+        </div>
+        <div>
+            <div class="field-group">
+                <label>Techniques to Focus On</label>
+                <div class="notes-area"></div>
+            </div>
+            <div class="field-group">
+                <label>Common Setups That Work</label>
+                <div class="notes-area"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Chains & Combinations -->
+<div class="section">
+    <div class="section-header">Chains & Combinations</div>
+    <div class="instructions">
+        Document technique chains that work together (e.g., Scissor sweep fails → Pendulum sweep)
+    </div>
+    <table>
+        <tr>
+            <th style="width: 25%;">Primary Technique</th>
+            <th style="width: 20%;">If Defended...</th>
+            <th style="width: 25%;">Chain To</th>
+            <th>Notes</th>
+        </tr>
+        <tr><td style="height: 22px;"></td><td></td><td></td><td></td></tr>
+        <tr><td style="height: 22px;"></td><td></td><td></td><td></td></tr>
+        <tr><td style="height: 22px;"></td><td></td><td></td><td></td></tr>
+        <tr><td style="height: 22px;"></td><td></td><td></td><td></td></tr>
+        <tr><td style="height: 22px;"></td><td></td><td></td><td></td></tr>
+    </table>
+</div>
+
+<!-- Goals -->
+<div class="section">
+    <div class="section-header">Goals</div>
+    <div class="two-column">
+        <div>
+            <div class="field-group">
+                <label>Technique I want to hit consistently</label>
+                <div class="input-line"></div>
+            </div>
+            <div class="field-group">
+                <label>Target success rate</label>
+                <div class="input-line"></div>
+            </div>
+        </div>
+        <div>
+            <div class="field-group">
+                <label>New technique to learn</label>
+                <div class="input-line"></div>
+            </div>
+            <div class="field-group">
+                <label>Questions for instructor</label>
+                <div class="input-line"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    BJJ Training Journal - Technique Type Tracker | The Ouchie Method | ouchieorigami.com
+</div>
+
+</body>
+</html>
