@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GB1 Curriculum Statistics Report</title>
+    <style>
+        :root {
+            --gb-blue: #003366;
+            --gb-blue-light: #0056b3;
+            --gb-red: #cc0000;
+            --gb-gray: #f5f5f5;
+            --gb-dark: #1a1a1a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: var(--gb-dark);
+            background: #fff;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--gb-blue) 0%, var(--gb-blue-light) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .header .version {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section h2 {
+            color: var(--gb-blue);
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--gb-red);
+        }
+
+        .section h3 {
+            color: var(--gb-blue-light);
+            font-size: 1.25rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: var(--gb-gray);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .card .value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gb-blue);
+        }
+
+        .card .label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background: var(--gb-blue);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: var(--gb-gray);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .progress-bar {
+            background: #e0e0e0;
+            border-radius: 10px;
+            height: 28px;
+            overflow: hidden;
+            margin: 0.5rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            min-width: fit-content;
+        }
+
+        .progress-fill.blue { background: var(--gb-blue); }
+        .progress-fill.red { background: var(--gb-red); }
+        .progress-fill.light-blue { background: var(--gb-blue-light); }
+        .progress-fill.gray { background: #666; }
+
+        .time-chart {
+            display: flex;
+            height: 40px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .time-segment {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 0.25rem;
+        }
+
+        .badge.strike { background: #ff6b6b; color: white; }
+        .badge.headlock { background: #4ecdc4; color: white; }
+        .badge.clinch { background: #45b7d1; color: white; }
+        .badge.guard { background: var(--gb-blue); color: white; }
+        .badge.mount { background: var(--gb-red); color: white; }
+        .badge.side { background: #9b59b6; color: white; }
+        .badge.back { background: #2ecc71; color: white; }
+
+        .insight-box {
+            background: linear-gradient(135deg, var(--gb-gray) 0%, #e8e8e8 100%);
+            border-left: 4px solid var(--gb-blue);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .insight-box h4 {
+            color: var(--gb-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .talking-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .talking-point {
+            background: var(--gb-gray);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .talking-point .week {
+            background: var(--gb-blue);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .accordion {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            background: var(--gb-gray);
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .accordion-header:hover {
+            background: #e8e8e8;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .accordion-content.open {
+            max-height: 5000px;
+        }
+
+        .technique-list {
+            padding: 0;
+        }
+
+        .technique-item {
+            display: flex;
+            padding: 0.75rem 1.5rem;
+            border-bottom: 1px solid #eee;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .technique-item:last-child {
+            border-bottom: none;
+        }
+
+        .technique-number {
+            background: var(--gb-blue);
+            color: white;
+            min-width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .technique-details {
+            flex: 1;
+        }
+
+        .technique-name {
+            font-weight: 500;
+        }
+
+        .technique-category {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 0.25rem;
+        }
+
+        .footer {
+            background: var(--gb-dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.75rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            th, td {
+                padding: 0.75rem 0.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media print {
+            .accordion-content {
+                max-height: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>GB1 Curriculum Statistics Report</h1>
+        <p class="version">Version 4.0 | 16-Week Fundamentals Program</p>
+    </div>
+
+    <div class="container">
+        <!-- Overview Section -->
+        <section class="section">
+            <h2>Overview</h2>
+            <div class="cards">
+                <div class="card">
+                    <div class="value">16</div>
+                    <div class="label">Total Weeks</div>
+                </div>
+                <div class="card">
+                    <div class="value">32</div>
+                    <div class="label">Total Classes</div>
+                </div>
+                <div class="card">
+                    <div class="value">96</div>
+                    <div class="label">Total Techniques</div>
+                </div>
+                <div class="card">
+                    <div class="value">60</div>
+                    <div class="label">Minutes Per Class</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Class Time Allocation -->
+        <section class="section">
+            <h2>Class Time Allocation</h2>
+            <div class="time-chart">
+                <div class="time-segment" style="width: 11.7%; background: #4ecdc4;">7m</div>
+                <div class="time-segment" style="width: 30%; background: var(--gb-blue);">18m</div>
+                <div class="time-segment" style="width: 3.3%; background: #95a5a6;">2m</div>
+                <div class="time-segment" style="width: 30%; background: var(--gb-red);">18m</div>
+                <div class="time-segment" style="width: 16.7%; background: #9b59b6;">10m</div>
+                <div class="time-segment" style="width: 8.3%; background: #2ecc71;">5m</div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Segment</th>
+                        <th>Duration</th>
+                        <th>Percentage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Warm Up</td>
+                        <td>7 minutes</td>
+                        <td>11.7%</td>
+                    </tr>
+                    <tr>
+                        <td>Self Defense & Takedowns</td>
+                        <td>18 minutes</td>
+                        <td>30.0%</td>
+                    </tr>
+                    <tr>
+                        <td>Water Break</td>
+                        <td>2 minutes</td>
+                        <td>3.3%</td>
+                    </tr>
+                    <tr>
+                        <td>Sport Jiu-Jitsu</td>
+                        <td>18 minutes</td>
+                        <td>30.0%</td>
+                    </tr>
+                    <tr>
+                        <td>GB1 Drill / Specific Training</td>
+                        <td>10 minutes</td>
+                        <td>16.7%</td>
+                    </tr>
+                    <tr>
+                        <td>Cool Down & Closing</td>
+                        <td>5 minutes</td>
+                        <td>8.3%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Self-Defense Categories -->
+        <section class="section">
+            <h2>Self-Defense Categories</h2>
+            <p style="margin-bottom: 1rem; color: #666;"><strong>32 Total Self-Defense Techniques</strong></p>
+
+            <div class="progress-bar">
+                <div class="progress-fill blue" style="width: 56.3%;">Strike - 56.3%</div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill light-blue" style="width: 25%;">Headlocks - 25%</div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill gray" style="width: 18.8%;">Clinch & Holds - 18.8%</div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Count</th>
+                        <th>Percentage</th>
+                        <th>Weeks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="badge strike">Strike</span></td>
+                        <td>18</td>
+                        <td>56.3%</td>
+                        <td>1, 3, 5, 7, 9, 11, 13, 15</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge headlock">Headlocks</span></td>
+                        <td>8</td>
+                        <td>25.0%</td>
+                        <td>2, 6, 10, 14</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge clinch">Clinch & Holds</span></td>
+                        <td>6</td>
+                        <td>18.8%</td>
+                        <td>4, 8, 12, 16</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="insight-box">
+                <h4>Rotation Pattern</h4>
+                <p>Self-defense categories follow a 4-week rotation cycle: Strike → Headlocks → Strike → Clinch & Holds</p>
+            </div>
+        </section>
+
+        <!-- Sport Jiu-Jitsu Positions -->
+        <section class="section">
+            <h2>Sport Jiu-Jitsu Positions</h2>
+            <p style="margin-bottom: 1rem; color: #666;"><strong>64 Total Sport Jiu-Jitsu Techniques</strong></p>
+
+            <div class="progress-bar">
+                <div class="progress-fill blue" style="width: 31.3%;">Guard Bottom - 31.3%</div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill light-blue" style="width: 25%;">Guard Top - 25%</div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 18.8%; background: #9b59b6;">Sidemount - 18.8%</div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill red" style="width: 18.8%;">Mount | KOB - 18.8%</div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 12.5%; background: #2ecc71;">Back | Turtle - 12.5%</div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Position</th>
+                        <th>Techniques</th>
+                        <th>Percentage</th>
+                        <th>Weeks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="badge guard">Guard Bottom</span></td>
+                        <td>20</td>
+                        <td>31.3%</td>
+                        <td>1, 5, 9, 13</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge guard">Guard Top</span></td>
+                        <td>16</td>
+                        <td>25.0%</td>
+                        <td>3, 7, 11, 15</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge side">Sidemount</span></td>
+                        <td>12</td>
+                        <td>18.8%</td>
+                        <td>2, 8, 14</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge mount">Mount | Knee on Belly</span></td>
+                        <td>12</td>
+                        <td>18.8%</td>
+                        <td>4, 10, 16</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge back">Back | Turtle</span></td>
+                        <td>8</td>
+                        <td>12.5%</td>
+                        <td>6, 12</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Technique Type Analysis -->
+        <section class="section">
+            <h2>Technique Type Analysis</h2>
+
+            <div class="two-column">
+                <div>
+                    <h3>Submissions Taught</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Submission</th>
+                                <th>Count</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Armbar / Straight Armbar</td><td>8</td></tr>
+                            <tr><td>X Collar Choke</td><td>4</td></tr>
+                            <tr><td>Triangle</td><td>2</td></tr>
+                            <tr><td>Two Collars Choke</td><td>2</td></tr>
+                            <tr><td>Shoulder Lock</td><td>2</td></tr>
+                            <tr><td>Kimura</td><td>1</td></tr>
+                            <tr><td>Key Lock</td><td>1</td></tr>
+                            <tr><td>Rear Naked Choke</td><td>1</td></tr>
+                            <tr><td>Clock Choke</td><td>1</td></tr>
+                            <tr><td>Papercut Choke</td><td>1</td></tr>
+                            <tr><td>Guillotine</td><td>1</td></tr>
+                            <tr><td>Footlock</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div>
+                    <h3>Sweeps Taught</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Sweep</th>
+                                <th>Technique #</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Scissor Sweep</td><td>3</td></tr>
+                            <tr><td>Pull Feet Sweep</td><td>26</td></tr>
+                            <tr><td>Waiter Sweep</td><td>27</td></tr>
+                            <tr><td>Tripod Sweep</td><td>29</td></tr>
+                            <tr><td>Outside Hook Sweep</td><td>30</td></tr>
+                            <tr><td>Pendulum Sweep</td><td>50</td></tr>
+                            <tr><td>Sit Up Sweep</td><td>74</td></tr>
+                            <tr><td>Spider Guard Sweep</td><td>78</td></tr>
+                            <tr><td>Half Guard Sweep</td><td>81</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="two-column" style="margin-top: 2rem;">
+                <div>
+                    <h3>Escapes by Position</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Position</th>
+                                <th>Escape Count</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Sidemount Escapes</td><td>9</td></tr>
+                            <tr><td>Mount Escapes</td><td>8</td></tr>
+                            <tr><td>Headlock Escapes</td><td>6</td></tr>
+                            <tr><td>Bear Hug Escapes</td><td>4</td></tr>
+                            <tr><td>Back Escapes</td><td>3</td></tr>
+                            <tr><td>Knee on Belly Escapes</td><td>3</td></tr>
+                            <tr style="background: var(--gb-gray); font-weight: 600;">
+                                <td>Total Escapes</td>
+                                <td>33 (34%)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div>
+                    <h3>Guard Passes Taught</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pass Type</th>
+                                <th>Count</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Over the Leg Pass</td><td>3</td></tr>
+                            <tr><td>Knee Slide Pass</td><td>3</td></tr>
+                            <tr><td>Under the Leg Pass</td><td>2</td></tr>
+                            <tr><td>Bullfight / Spider Pass</td><td>2</td></tr>
+                            <tr><td>Standing Pass</td><td>2</td></tr>
+                            <tr><td>Leg Drag Pass</td><td>1</td></tr>
+                            <tr style="background: var(--gb-gray); font-weight: 600;">
+                                <td>Total Passes</td>
+                                <td>13</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technique Distribution -->
+        <section class="section">
+            <h2>Curriculum Balance</h2>
+
+            <div class="two-column">
+                <div>
+                    <h3>Self-Defense Focus</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill red" style="width: 56%;">Strike Defense - 56%</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill light-blue" style="width: 25%;">Headlock Defense - 25%</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill gray" style="width: 19%;">Clinch/Hold Defense - 19%</div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3>Technique Categories</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill blue" style="width: 34%;">Escapes - 34%</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill red" style="width: 25%;">Submissions - 25%</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 18%; background: #9b59b6;">Takedowns - 18%</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 14%; background: #2ecc71;">Passes - 14%</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill gray" style="width: 9%;">Sweeps - 9%</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GB1 Talking Points -->
+        <section class="section">
+            <h2>GB1 Talking Points</h2>
+            <p style="margin-bottom: 1.5rem; color: #666;">Cultural and philosophical education integrated into each week</p>
+
+            <div class="talking-points">
+                <div class="talking-point">
+                    <div class="week">1</div>
+                    <div>Jiu-Jitsu for Everyone</div>
+                </div>
+                <div class="talking-point">
+                    <div class="week">2</div>
+                    <div>The Red Shield</div>
+                </div>
+                <div class="talking-point">
+                    <div class="week">3</div>
+                    <div>The GB Uniform</div>
+                </div>
+                <div class="talking-point">
+                    <div class="week">4</div>
+                    <div>The GB Brotherhood</div>
+                </div>
+                <div class="talking-point">
+                    <div class="week">5</div>
+                    <div>The GB Method</div>
+                </div>
+                <div class="talking-point">
+                    <div class="week">6</div>
+                    <div>The Jiu-Jitsu of Gracie Barra</div>
+                </div>
+                <div class="talking-point">
+                    <div class="week">7</div>
+                    <div>The GB Student</div>
+                </div>
+                <div class="talking-point">
+                    <div class="week">8</div>
+                    <div>The GB Black Belt</div>
+                </div>
+                <div class="talking-point">
+                    <div class="week">9</div>
+                    <div>The GB History</div>
+                </div>
+                <div class="talking-point">
+                    <div class="week">10</div>
+                    <div>The GB Belt System</div>
+                </div>
+                <div class="talking-point">
+                    <div class="week">11</div>
+                    <div>The GB Legacy</div>
+                </div>
+                <div class="talking-point">
+                    <div class="week">12</div>
+                    <div>The Equipe GB</div>
+                </div>
+                <div class="talking-point">
+                    <div class="week">13</div>
+                    <div>The Mission of Gracie Barra</div>
+                </div>
+                <div class="talking-point">
+                    <div class="week">14</div>
+                    <div>Master Carlos Gracie Jr.</div>
+                </div>
+                <div class="talking-point">
+                    <div class="week">15</div>
+                    <div>The GB Training Etiquette</div>
+                </div>
+                <div class="talking-point">
+                    <div class="week">16</div>
+                    <div>The GB Attendance Card</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Drill Format -->
+        <section class="section">
+            <h2>Drill Format Distribution</h2>
+            <div class="cards" style="max-width: 500px;">
+                <div class="card">
+                    <div class="value">68.8%</div>
+                    <div class="label">Taking Turns (22 drills)</div>
+                </div>
+                <div class="card">
+                    <div class="value">31.3%</div>
+                    <div class="label">Repeating (10 drills)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Insights -->
+        <section class="section">
+            <h2>Key Curriculum Insights</h2>
+
+            <div class="insight-box">
+                <h4>1. Escape-Heavy Curriculum</h4>
+                <p>~34% of techniques are escapes, emphasizing defensive fundamentals for beginners</p>
+            </div>
+
+            <div class="insight-box">
+                <h4>2. Guard Dominance</h4>
+                <p>56% of sport BJJ focuses on guard positions (both playing guard and passing guard)</p>
+            </div>
+
+            <div class="insight-box">
+                <h4>3. Striking Defense Priority</h4>
+                <p>Over half of self-defense curriculum addresses punch/strike scenarios</p>
+            </div>
+
+            <div class="insight-box">
+                <h4>4. Consistent Structure</h4>
+                <p>Every week has exactly 6 numbered techniques (1 self-defense per class + 2 sport BJJ per class)</p>
+            </div>
+
+            <div class="insight-box">
+                <h4>5. Cyclical Learning</h4>
+                <p>4-week and 8-week cycles ensure position review throughout the 16-week program</p>
+            </div>
+
+            <div class="insight-box">
+                <h4>6. Armbar Emphasis</h4>
+                <p>The armbar is the most frequently taught submission (8 variations), reinforcing this fundamental attack</p>
+            </div>
+
+            <div class="insight-box">
+                <h4>7. Cultural Integration</h4>
+                <p>Each week includes a GB-specific cultural/philosophical topic to build community values</p>
+            </div>
+        </section>
+
+        <!-- Complete Technique List -->
+        <section class="section">
+            <h2>Complete Technique List</h2>
+
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>Week 1-4 Techniques (1-24)</span>
+                    <span>+</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="technique-list">
+                        <div class="technique-item"><div class="technique-number">1</div><div class="technique-details"><div class="technique-name">Escape from Sidemount with Punches + Recovering the Guard + Technical Lift</div><div class="technique-category">Self-Defense (Strike)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">2</div><div class="technique-details"><div class="technique-name">Pulling to the Closed Guard Using the Foot on the Hip</div><div class="technique-category">Sport BJJ (Guard Bottom)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">3</div><div class="technique-details"><div class="technique-name">Scissor Sweep</div><div class="technique-category">Sport BJJ (Guard Bottom)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">4</div><div class="technique-details"><div class="technique-name">Escape from Mount with Punches + Bridge + Posture from Closed Guard</div><div class="technique-category">Self-Defense (Strike)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">5</div><div class="technique-details"><div class="technique-name">X Collar Choke from Closed Guard with Four Fingers Inside the Collar</div><div class="technique-category">Sport BJJ (Guard Bottom)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">6</div><div class="technique-details"><div class="technique-name">X Collar Choke from the Closed Guard with the Thumb Inside the Collar</div><div class="technique-category">Sport BJJ (Guard Bottom)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">7</div><div class="technique-details"><div class="technique-name">Escape from Side Standing Headlock + Rear Takedown + Technical Mount + Armbar</div><div class="technique-category">Self-Defense (Headlocks)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">8</div><div class="technique-details"><div class="technique-name">Escape from Sidemount Recovering the Closed Guard</div><div class="technique-category">Sport BJJ (Sidemount)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">9</div><div class="technique-details"><div class="technique-name">Escape from Sidemount when the Opponent Blocks the Hip and the Head + Recovering the Closed Guard Using the Leg Over the Top</div><div class="technique-category">Sport BJJ (Sidemount)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">10</div><div class="technique-details"><div class="technique-name">Escape from Rear Headlock with Forward Takedown & Escape from Rear Headlock with Outside Hook Takedown</div><div class="technique-category">Self-Defense (Headlocks)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">11</div><div class="technique-details"><div class="technique-name">Escape from Sidemount to Turtle Position</div><div class="technique-category">Sport BJJ (Sidemount)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">12</div><div class="technique-details"><div class="technique-name">Double Leg Takedown from Turtle Position</div><div class="technique-category">Sport BJJ (Sidemount)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">13</div><div class="technique-details"><div class="technique-name">Jab Slip to Double Leg Take Down</div><div class="technique-category">Self-Defense (Strike)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">14</div><div class="technique-details"><div class="technique-name">Safe Posture + Opening the Guard on the Knees + Elbows Closed</div><div class="technique-category">Sport BJJ (Guard Top)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">15</div><div class="technique-details"><div class="technique-name">One Arm Under the Leg Guard Pass + Side Mount Control Blocking the Hips and Controlling the Shoulder</div><div class="technique-category">Sport BJJ (Guard Top)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">16</div><div class="technique-details"><div class="technique-name">Cross Punch Slip to Single Leg Take Down</div><div class="technique-category">Self-Defense (Strike)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">17</div><div class="technique-details"><div class="technique-name">Safe Posture + Opening the Guard Standing Up Holding the Sleeve</div><div class="technique-category">Sport BJJ (Guard Top)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">18</div><div class="technique-details"><div class="technique-name">Knee Slide Guard Pass + Side Mount</div><div class="technique-category">Sport BJJ (Guard Top)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">19</div><div class="technique-details"><div class="technique-name">Double Lapel Grab Escape with Outside Hook Takedown + Straight Armbar</div><div class="technique-category">Self-Defense (Clinch & Holds)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">20</div><div class="technique-details"><div class="technique-name">Escape from the Mount with Headlock Using the Bridge</div><div class="technique-category">Sport BJJ (Mount)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">21</div><div class="technique-details"><div class="technique-name">Escape from the Mount with Choke Using the Bridge</div><div class="technique-category">Sport BJJ (Mount)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">22</div><div class="technique-details"><div class="technique-name">Two Hand Throat Grab Escape + Block Knee Strike + Jab Slip + Body Lock Take Down + Transition to the Mount</div><div class="technique-category">Self-Defense (Clinch & Holds)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">23</div><div class="technique-details"><div class="technique-name">Escape from the Mount Using the Elbows when the Opponent Does Not Open the Knee + Recovering the Full Guard</div><div class="technique-category">Sport BJJ (Mount)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">24</div><div class="technique-details"><div class="technique-name">Knee on Belly Escape Pushing the Belt Knot + Half Technical Lift + Ankle Pick</div><div class="technique-category">Sport BJJ (Mount)</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>Week 5-8 Techniques (25-48)</span>
+                    <span>+</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="technique-list">
+                        <div class="technique-item"><div class="technique-number">25</div><div class="technique-details"><div class="technique-name">Blocking Punches from the Closed Guard + Distance Management + Control the Arms + Armbar</div><div class="technique-category">Self-Defense (Strike)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">26</div><div class="technique-details"><div class="technique-name">Pull Feet Sweep with Opponent Standing from Closed Guard</div><div class="technique-category">Sport BJJ (Guard Bottom)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">27</div><div class="technique-details"><div class="technique-name">Waiter Sweep</div><div class="technique-category">Sport BJJ (Guard Bottom)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">28</div><div class="technique-details"><div class="technique-name">Blocking Punches from the Closed Guard + Distance Management + Up Kick + Technical Lift</div><div class="technique-category">Self-Defense (Strike)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">29</div><div class="technique-details"><div class="technique-name">Tripod Sweep</div><div class="technique-category">Sport BJJ (Guard Bottom)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">30</div><div class="technique-details"><div class="technique-name">Outside Hook Sweep when the Opponent Defends the Tripod Sweep</div><div class="technique-category">Sport BJJ (Guard Bottom)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">31</div><div class="technique-details"><div class="technique-name">Escape from Ground Headlock Pushing the Head Away + Armbar</div><div class="technique-category">Self-Defense (Headlocks)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">32</div><div class="technique-details"><div class="technique-name">Recovering the Guard from Rear Turtle Position</div><div class="technique-category">Sport BJJ (Back/Turtle)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">33</div><div class="technique-details"><div class="technique-name">Recovering the Guard from Front Turtle Position</div><div class="technique-category">Sport BJJ (Back/Turtle)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">34</div><div class="technique-details"><div class="technique-name">Headlock Escape Taking the Back + Shoulder Lock</div><div class="technique-category">Self-Defense (Headlocks)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">35</div><div class="technique-details"><div class="technique-name">Bridge Escape from The Back + Sidemount</div><div class="technique-category">Sport BJJ (Back/Turtle)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">36</div><div class="technique-details"><div class="technique-name">Bridge Escape from the Back Using the Bridge Avoiding the Mount + Recovering the Guard</div><div class="technique-category">Sport BJJ (Back/Turtle)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">37</div><div class="technique-details"><div class="technique-name">Distance Management with the Arm + Front Push Kick + Body Lock Take Down + Sidemount Control</div><div class="technique-category">Self-Defense (Strike)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">38</div><div class="technique-details"><div class="technique-name">Open the Guard on the Knees + Over the Leg Guard Pass</div><div class="technique-category">Sport BJJ (Guard Top)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">39</div><div class="technique-details"><div class="technique-name">Half Guard Pass Using the Hook + Hip Elevation + Transition to Mount</div><div class="technique-category">Sport BJJ (Guard Top)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">40</div><div class="technique-details"><div class="technique-name">Distance Management with the Arm + Jab + Cross + Double Leg</div><div class="technique-category">Self-Defense (Strike)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">41</div><div class="technique-details"><div class="technique-name">Spider Guard Bull-Fight Pass Turning the Wheel + Sidemount Control</div><div class="technique-category">Sport BJJ (Guard Top)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">42</div><div class="technique-details"><div class="technique-name">Spider Bull-Fight Guard Pass with Hips Forward + Sidemount Control</div><div class="technique-category">Sport BJJ (Guard Top)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">43</div><div class="technique-details"><div class="technique-name">Blocking the Hook Punches + Headlock Takedown + Armbar</div><div class="technique-category">Self-Defense (Clinch & Holds)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">44</div><div class="technique-details"><div class="technique-name">Transition to the Mount Switching the Base Passing the Leg Over</div><div class="technique-category">Sport BJJ (Sidemount)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">45</div><div class="technique-details"><div class="technique-name">Papercut Choke with the Opponent's Arm Trapped</div><div class="technique-category">Sport BJJ (Sidemount)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">46</div><div class="technique-details"><div class="technique-name">Jab Slip + Bodylock Clinch + Rear Bodylock + Wrist Control + Forward Takedown</div><div class="technique-category">Self-Defense (Clinch & Holds)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">47</div><div class="technique-details"><div class="technique-name">Transition to the Mount Sliding the Knee Over the Belly</div><div class="technique-category">Sport BJJ (Sidemount)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">48</div><div class="technique-details"><div class="technique-name">Spinning Armbar from Sidemount</div><div class="technique-category">Sport BJJ (Sidemount)</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>Week 9-12 Techniques (49-72)</span>
+                    <span>+</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="technique-list">
+                        <div class="technique-item"><div class="technique-number">49</div><div class="technique-details"><div class="technique-name">Blocking Punches from the Turtle Position + Recovering the Guard</div><div class="technique-category">Self-Defense (Strike)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">50</div><div class="technique-details"><div class="technique-name">Pendulum Sweep</div><div class="technique-category">Sport BJJ (Guard Bottom)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">51</div><div class="technique-details"><div class="technique-name">Straight Armbar from Closed Guard when Opponent Defends the Pendulum Sweep</div><div class="technique-category">Sport BJJ (Guard Bottom)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">52</div><div class="technique-details"><div class="technique-name">Block Punches from Knee on Belly + Transition to Turtle + Recovering the Guard</div><div class="technique-category">Self-Defense (Strike)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">53</div><div class="technique-details"><div class="technique-name">Taking the Back from Closed Guard</div><div class="technique-category">Sport BJJ (Guard Bottom)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">54</div><div class="technique-details"><div class="technique-name">Triangle from Closed Guard Controlling the Sleeve and the Wrist</div><div class="technique-category">Sport BJJ (Guard Bottom)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">55</div><div class="technique-details"><div class="technique-name">Standing Guillotine</div><div class="technique-category">Self-Defense (Headlocks)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">56</div><div class="technique-details"><div class="technique-name">X Choke from the Mount with the Four Fingers Inside the Collar & X Choke from the Mount with the Thumb Inside the Collar</div><div class="technique-category">Sport BJJ (Mount)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">57</div><div class="technique-details"><div class="technique-name">Technical Mount + Two Collars Choke</div><div class="technique-category">Sport BJJ (Mount)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">58</div><div class="technique-details"><div class="technique-name">Escape Side Headlock Standing with Punches</div><div class="technique-category">Self-Defense (Headlocks)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">59</div><div class="technique-details"><div class="technique-name">Straight Armbar from the Mount</div><div class="technique-category">Sport BJJ (Mount)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">60</div><div class="technique-details"><div class="technique-name">Key Lock from the Mount</div><div class="technique-category">Sport BJJ (Mount)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">61</div><div class="technique-details"><div class="technique-name">Block the Hook Punch + Hip Throw + Straight Armbar with Knee on Belly</div><div class="technique-category">Self-Defense (Strike)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">62</div><div class="technique-details"><div class="technique-name">Open the Guard on the Knees with Two Hands on the Belt</div><div class="technique-category">Sport BJJ (Guard Top)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">63</div><div class="technique-details"><div class="technique-name">Knee Slide Guard Pass Controlling The Sleeve</div><div class="technique-category">Sport BJJ (Guard Top)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">64</div><div class="technique-details"><div class="technique-name">Slip the Hook Punch + Bodylock Takedown + Transition to the Mount</div><div class="technique-category">Self-Defense (Strike)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">65</div><div class="technique-details"><div class="technique-name">Opening the Guard Standing Up Controlling the Collar and Hip</div><div class="technique-category">Sport BJJ (Guard Top)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">66</div><div class="technique-details"><div class="technique-name">Guard Pass Standing Up with Both Arms Under The Legs</div><div class="technique-category">Sport BJJ (Guard Top)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">67</div><div class="technique-details"><div class="technique-name">Escape from Front Bear Hug Over the Arms + Hip Throw + Knee on Belly</div><div class="technique-category">Self-Defense (Clinch & Holds)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">68</div><div class="technique-details"><div class="technique-name">Taking the Back from Turtle Position + Seatbelt Grip Opening the Space for the Hook</div><div class="technique-category">Sport BJJ (Back/Turtle)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">69</div><div class="technique-details"><div class="technique-name">Clock Choke</div><div class="technique-category">Sport BJJ (Back/Turtle)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">70</div><div class="technique-details"><div class="technique-name">Escape from Rear Bear Hug Over the Arms + Rear Takedown + Sidemount Control</div><div class="technique-category">Self-Defense (Clinch & Holds)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">71</div><div class="technique-details"><div class="technique-name">Taking the Back from Turtle Position Using the Lapel Grip</div><div class="technique-category">Sport BJJ (Back/Turtle)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">72</div><div class="technique-details"><div class="technique-name">Two Collars Choke & Rear Naked Choke</div><div class="technique-category">Sport BJJ (Back/Turtle)</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>Week 13-16 Techniques (73-96)</span>
+                    <span>+</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="technique-list">
+                        <div class="technique-item"><div class="technique-number">73</div><div class="technique-details"><div class="technique-name">Blocking Punches from Closed Guard Bottom + Clinch + Triangle Choke</div><div class="technique-category">Self-Defense (Strike)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">74</div><div class="technique-details"><div class="technique-name">Sit Up Sweep from Closed Guard</div><div class="technique-category">Sport BJJ (Guard Bottom)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">75</div><div class="technique-details"><div class="technique-name">Kimura from Closed Guard</div><div class="technique-category">Sport BJJ (Guard Bottom)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">76</div><div class="technique-details"><div class="technique-name">Distance Management from Closed Guard Bottom + Knee Shield + Upkick + Technical Lift</div><div class="technique-category">Self-Defense (Strike)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">77</div><div class="technique-details"><div class="technique-name">Spider Guard Control with Opponent Bullfighting or Posturing</div><div class="technique-category">Sport BJJ (Guard Bottom)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">78</div><div class="technique-details"><div class="technique-name">Spider Guard Sweep with the Opponent on his Knees</div><div class="technique-category">Sport BJJ (Guard Bottom)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">79</div><div class="technique-details"><div class="technique-name">Escape from Ground Headlock to Turtle Position + Inversion + Technical Mount + Straight Armbar</div><div class="technique-category">Self-Defense (Headlocks)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">80</div><div class="technique-details"><div class="technique-name">Escape Sidemount Control + Recovering Half Guard</div><div class="technique-category">Sport BJJ (Sidemount)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">81</div><div class="technique-details"><div class="technique-name">Half Guard Sweep Using the Underhook and Controlling the Opponent's Foot</div><div class="technique-category">Sport BJJ (Sidemount)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">82</div><div class="technique-details"><div class="technique-name">Headlock Escape Taking the Back + Shoulder Lock</div><div class="technique-category">Self-Defense (Headlocks)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">83</div><div class="technique-details"><div class="technique-name">Escape From Sidemount Anticipating the Guard Pass + Elbow Control + Recovering The Guard</div><div class="technique-category">Sport BJJ (Sidemount)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">84</div><div class="technique-details"><div class="technique-name">Escape from Sidemount Anticipating the Guard Pass + Inversion with the Hand on the Belt</div><div class="technique-category">Sport BJJ (Sidemount)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">85</div><div class="technique-details"><div class="technique-name">Block Front Kick + Elbow Strike</div><div class="technique-category">Self-Defense (Strike)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">86</div><div class="technique-details"><div class="technique-name">Open the Guard Standing Up with Two Hands on the Pants</div><div class="technique-category">Sport BJJ (Guard Top)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">87</div><div class="technique-details"><div class="technique-name">Leg Drag Guard Pass</div><div class="technique-category">Sport BJJ (Guard Top)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">88</div><div class="technique-details"><div class="technique-name">Blocking High Round Kick + Inside Hook Takedown + Straight Footlock</div><div class="technique-category">Self-Defense (Strike)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">89</div><div class="technique-details"><div class="technique-name">Open the Guard on the Knees with both Hands on the Pants</div><div class="technique-category">Sport BJJ (Guard Top)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">90</div><div class="technique-details"><div class="technique-name">Two Arms Under The Leg Guard Pass on the Knees</div><div class="technique-category">Sport BJJ (Guard Top)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">91</div><div class="technique-details"><div class="technique-name">Escape from Front Bear Hug Under the Arm + Break Opponent's Grips + Outside Hook Takedown + Straight Armbar</div><div class="technique-category">Self-Defense (Clinch & Holds)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">92</div><div class="technique-details"><div class="technique-name">Escape from Mount Using the Bridge</div><div class="technique-category">Sport BJJ (Mount)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">93</div><div class="technique-details"><div class="technique-name">Escape from Mount Using the Elbows When Opponent Opens the Knee + Recovering the Closed Guard</div><div class="technique-category">Sport BJJ (Mount)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">94</div><div class="technique-details"><div class="technique-name">Rear Bear Hug Escape Over the Arm + Hook on the Leg + Hand on the Floor + Leg Lock</div><div class="technique-category">Self-Defense (Clinch & Holds)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">95</div><div class="technique-details"><div class="technique-name">Escape from the Mount Using the Elbows when the Opponent Initiates the Transition to the Mount + Take the Back</div><div class="technique-category">Sport BJJ (Mount)</div></div></div>
+                        <div class="technique-item"><div class="technique-number">96</div><div class="technique-details"><div class="technique-name">Knee on Belly Escape Turning the Back + Open Guard</div><div class="technique-category">Sport BJJ (Mount)</div></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="footer">
+        <p>Generated from GB1 Curriculum v4.0</p>
+        <p>Gracie Barra 16-Week Fundamentals Program</p>
+    </div>
+
+    <script>
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('span:last-child');
+
+            if (content.classList.contains('open')) {
+                content.classList.remove('open');
+                icon.textContent = '+';
+            } else {
+                content.classList.add('open');
+                icon.textContent = '−';
+            }
+        }
+    </script>
+</body>
+</html>
